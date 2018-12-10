@@ -1,0 +1,804 @@
+EESchema Schematic File Version 4
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 17
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L MCU_ST_STM32F0:STM32F030F4Px U?
+U 1 1 5C0DEFFF
+P 4850 3300
+F 0 "U?" H 4850 2414 50  0000 C CNN
+F 1 "STM32F030F4Px" H 4850 2323 50  0000 C CNN
+F 2 "Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm" H 4450 2600 50  0001 R CNN
+F 3 "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00088500.pdf" H 4850 3300 50  0001 C CNN
+	1    4850 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Clocks:CRYSTALPTH-HC49US Y?
+U 1 1 5C0DF2D1
+P 3950 3650
+F 0 "Y?" V 3908 3748 45  0000 L CNN
+F 1 "8MHz" V 3992 3748 45  0000 L CNN
+F 2 "HC49US" H 3950 3850 20  0001 C CNN
+F 3 "" H 3950 3650 50  0001 C CNN
+F 4 "" V 3866 3552 60  0000 R CNN "Field4"
+	1    3950 3650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3950 3550 4350 3550
+Wire Wire Line
+	4350 3550 4350 3600
+Wire Wire Line
+	3950 3750 4350 3750
+Wire Wire Line
+	4350 3750 4350 3700
+$Comp
+L SparkFun-Capacitors:0.1UF-0603-25V-5% C?
+U 1 1 5C0DF678
+P 3700 3550
+F 0 "C?" V 3466 3600 45  0000 C CNN
+F 1 "20pf" V 3550 3600 45  0000 C CNN
+F 2 "0603" H 3700 3800 20  0001 C CNN
+F 3 "" H 3700 3550 50  0001 C CNN
+F 4 "" V 3539 3600 60  0000 C CNN "Field4"
+	1    3700 3550
+	0    1    1    0   
+$EndComp
+$Comp
+L SparkFun-Capacitors:0.1UF-0603-25V-5% C?
+U 1 1 5C0DF7B1
+P 3800 3750
+F 0 "C?" V 3550 3800 45  0000 C CNN
+F 1 "20pf" V 3650 3800 45  0000 C CNN
+F 2 "0603" H 3800 4000 20  0001 C CNN
+F 3 "" H 3800 3750 50  0001 C CNN
+F 4 "" V 3639 3800 60  0000 C CNN "Field4"
+	1    3800 3750
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3900 3550 3950 3550
+Connection ~ 3950 3550
+Wire Wire Line
+	3900 3750 3950 3750
+Connection ~ 3950 3750
+$Comp
+L power:GND #PWR?
+U 1 1 5C0DFAB6
+P 4850 4100
+F 0 "#PWR?" H 4850 4100 30  0001 C CNN
+F 1 "GND" H 4850 4030 30  0001 C CNN
+F 2 "" H 4850 4100 50  0001 C CNN
+F 3 "" H 4850 4100 50  0001 C CNN
+	1    4850 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L w_connectors:HEADER_4 J?
+U 1 1 5C0DFC4D
+P 3450 2700
+F 0 "J?" H 3444 2313 60  0000 C CNN
+F 1 "HEADER_4" H 3444 2419 60  0000 C CNN
+F 2 "" H 3450 2700 60  0000 C CNN
+F 3 "" H 3450 2700 60  0000 C CNN
+	1    3450 2700
+	-1   0    0    1   
+$EndComp
+Text Label 3550 2550 0    50   ~ 0
+RESET
+Text Label 4350 2800 2    50   ~ 0
+RESET
+$Comp
+L power:GND #PWR?
+U 1 1 5C0DFEEA
+P 3600 3550
+F 0 "#PWR?" H 3600 3550 30  0001 C CNN
+F 1 "GND" H 3600 3480 30  0001 C CNN
+F 2 "" H 3600 3550 50  0001 C CNN
+F 3 "" H 3600 3550 50  0001 C CNN
+	1    3600 3550
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C0DFF1D
+P 3600 3750
+F 0 "#PWR?" H 3600 3750 30  0001 C CNN
+F 1 "GND" H 3600 3680 30  0001 C CNN
+F 2 "" H 3600 3750 50  0001 C CNN
+F 3 "" H 3600 3750 50  0001 C CNN
+	1    3600 3750
+	0    1    1    0   
+$EndComp
+$Comp
+L dk_Optoisolators-Logic-Output:TLP2361_TPL_E U?
+U 1 1 5C0E0037
+P 2850 6250
+F 0 "U?" H 3400 6100 60  0000 L CNN
+F 1 "TLP2361" H 3400 6000 60  0000 L CNN
+F 2 "digikey-footprints:SOIC-6-5_W4.55mm" H 3050 6450 60  0001 L CNN
+F 3 "https://toshiba.semicon-storage.com/info/docget.jsp?did=14229&prodName=TLP2361" H 3050 6550 60  0001 L CNN
+F 4 "TLP2361(TPLECT-ND" H 3050 6650 60  0001 L CNN "Digi-Key_PN"
+F 5 "TLP2361(TPL,E" H 3050 6750 60  0001 L CNN "MPN"
+F 6 "Isolators" H 3050 6850 60  0001 L CNN "Category"
+F 7 "Optoisolators - Logic Output" H 3050 6950 60  0001 L CNN "Family"
+F 8 "https://toshiba.semicon-storage.com/info/docget.jsp?did=14229&prodName=TLP2361" H 3050 7050 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/toshiba-semiconductor-and-storage/TLP2361(TPL,E/TLP2361(TPLECT-ND/5189799" H 3050 7150 60  0001 L CNN "DK_Detail_Page"
+F 10 "OPTOISO 3.75KV PSH PULL SO6-5" H 3050 7250 60  0001 L CNN "Description"
+F 11 "Toshiba Semiconductor and Storage" H 3050 7350 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 3050 7450 60  0001 L CNN "Status"
+	1    2850 6250
+	1    0    0    -1  
+$EndComp
+$Comp
+L dk_PMIC-Voltage-Regulators-Linear:AZ1117CH-3_3TRG1 U?
+U 1 1 5C0E0370
+P 6800 950
+F 0 "U?" H 6850 1237 60  0000 C CNN
+F 1 "AZ1117" H 6850 1131 60  0000 C CNN
+F 2 "digikey-footprints:SOT-223" H 7000 1150 60  0001 L CNN
+F 3 "https://www.diodes.com/assets/Datasheets/AZ1117C.pdf" H 7000 1250 60  0001 L CNN
+F 4 "AZ1117CH-3.3TRG1DICT-ND" H 7000 1350 60  0001 L CNN "Digi-Key_PN"
+F 5 "AZ1117CH-3.3TRG1" H 7000 1450 60  0001 L CNN "MPN"
+F 6 "Integrated Circuits (ICs)" H 7000 1550 60  0001 L CNN "Category"
+F 7 "PMIC - Voltage Regulators - Linear" H 7000 1650 60  0001 L CNN "Family"
+F 8 "https://www.diodes.com/assets/Datasheets/AZ1117C.pdf" H 7000 1750 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/diodes-incorporated/AZ1117CH-3.3TRG1/AZ1117CH-3.3TRG1DICT-ND/4505206" H 7000 1850 60  0001 L CNN "DK_Detail_Page"
+F 10 "IC REG LINEAR 3.3V 800MA SOT223" H 7000 1950 60  0001 L CNN "Description"
+F 11 "Diodes Incorporated" H 7000 2050 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 7000 2150 60  0001 L CNN "Status"
+	1    6800 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Regulator_SwitchedCapacitor:LM2776 U?
+U 1 1 5C0E0529
+P 5000 1450
+F 0 "U?" H 5441 1446 50  0000 L CNN
+F 1 "LM2776" H 5441 1355 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-6" H 5050 1100 50  0001 L CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm2776.pdf" H 3150 2700 50  0001 C CNN
+	1    5000 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power2:-3V3 #PWR?
+U 1 1 5C0E0B0B
+P 5400 1350
+F 0 "#PWR?" H 5400 1450 50  0001 C CNN
+F 1 "-3V3" V 5415 1478 50  0000 L CNN
+F 2 "" H 5400 1350 50  0001 C CNN
+F 3 "" H 5400 1350 50  0001 C CNN
+	1    5400 1350
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5C0E0DCD
+P 7200 950
+F 0 "#PWR?" H 7200 910 30  0001 C CNN
+F 1 "+3.3V" V 7209 1058 30  0000 L CNN
+F 2 "" H 7200 950 50  0001 C CNN
+F 3 "" H 7200 950 50  0001 C CNN
+	1    7200 950 
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5C0E0E5F
+P 7200 1050
+F 0 "#PWR?" H 7200 1010 30  0001 C CNN
+F 1 "+3.3V" V 7209 1158 30  0000 L CNN
+F 2 "" H 7200 1050 50  0001 C CNN
+F 3 "" H 7200 1050 50  0001 C CNN
+	1    7200 1050
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C0E0FB0
+P 6800 1350
+F 0 "#PWR?" H 6800 1350 30  0001 C CNN
+F 1 "GND" H 6800 1280 30  0001 C CNN
+F 2 "" H 6800 1350 50  0001 C CNN
+F 3 "" H 6800 1350 50  0001 C CNN
+	1    6800 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Connectors:CONN_02 POWER_SUPPLY
+U 1 1 5C0E1206
+P 6400 1050
+F 0 "POWER_SUPPLY" H 6250 1450 45  0000 C CNN
+F 1 " " H 6356 1376 45  0001 C CNN
+F 2 "1X02" H 6400 1300 20  0001 C CNN
+F 3 "" H 6400 1050 50  0001 C CNN
+F 4 "" H 6356 1281 60  0000 C CNN "Field4"
+	1    6400 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C0E169D
+P 6500 1050
+F 0 "#PWR?" H 6500 1050 30  0001 C CNN
+F 1 "GND" H 6500 980 30  0001 C CNN
+F 2 "" H 6500 1050 50  0001 C CNN
+F 3 "" H 6500 1050 50  0001 C CNN
+	1    6500 1050
+	1    0    0    -1  
+$EndComp
+Text Label 5350 3800 0    50   ~ 0
+SWDIO
+Text Label 5350 3900 0    50   ~ 0
+SWCLK
+$Comp
+L w_connectors:HEADER_3 OUTPUT
+U 1 1 5C0E23CC
+P 4350 5800
+F 0 "OUTPUT" H 4477 5800 60  0000 L CNN
+F 1 " " H 4477 5747 60  0001 L CNN
+F 2 "" H 4350 5800 60  0000 C CNN
+F 3 "" H 4350 5800 60  0000 C CNN
+	1    4350 5800
+	1    0    0    -1  
+$EndComp
+Text Label 5350 3000 0    50   ~ 0
+UART_TX
+Text Label 5350 3100 0    50   ~ 0
+UART_RX
+Text Label 2550 5750 2    50   ~ 0
+UART_TX
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5C0E3ABB
+P 4950 2600
+F 0 "#PWR?" H 4950 2560 30  0001 C CNN
+F 1 "+3.3V" H 4959 2738 30  0000 C CNN
+F 2 "" H 4950 2600 50  0001 C CNN
+F 3 "" H 4950 2600 50  0001 C CNN
+	1    4950 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5C0E3B97
+P 4850 2600
+F 0 "#PWR?" H 4850 2560 30  0001 C CNN
+F 1 "+3.3V" H 4859 2738 30  0000 C CNN
+F 2 "" H 4850 2600 50  0001 C CNN
+F 3 "" H 4850 2600 50  0001 C CNN
+	1    4850 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Capacitors:0.1UF-0603-25V-5% C?
+U 1 1 5C0E3D46
+P 3100 5250
+F 0 "C?" H 2992 5258 45  0000 R CNN
+F 1 "0.1uf" H 2992 5342 45  0000 R CNN
+F 2 "0603" H 3100 5500 20  0001 C CNN
+F 3 "" H 3100 5250 50  0001 C CNN
+F 4 "" V 2939 5300 60  0000 C CNN "Field4"
+	1    3100 5250
+	-1   0    0    1   
+$EndComp
+Text Label 4250 5700 2    50   ~ 0
+ISOL_3v3
+Text Label 4250 5800 2    50   ~ 0
+ISOL_GND
+Text Label 4250 5900 2    50   ~ 0
+ISOL_OUTPUT
+Text Label 3150 6250 0    50   ~ 0
+ISOL_OUTPUT
+Text Label 2850 6550 0    50   ~ 0
+ISOL_GND
+Text Label 2850 5950 0    50   ~ 0
+ISOL_3v3
+Text Label 3100 5150 2    50   ~ 0
+ISOL_3v3
+Text Label 3100 5450 2    50   ~ 0
+ISOL_OUTPUT
+$Comp
+L SparkFun-Resistors:10OHM-0603-1_10W-1% R?
+U 1 1 5C0E4F6C
+P 2550 5950
+F 0 "R?" V 2450 5700 45  0000 L CNN
+F 1 "360r" V 2550 5700 45  0000 L CNN
+F 2 "0603" H 2550 6100 20  0001 C CNN
+F 3 "" H 2550 5950 60  0001 C CNN
+F 4 "" V 2634 6018 60  0000 L CNN "Field4"
+	1    2550 5950
+	0    1    1    0   
+$EndComp
+Text Notes 1350 6900 0    50   ~ 0
+Surprisingly, no mosfet required here - \nSTM32 I/Os can source ~25ma
+$Comp
+L power:GND #PWR?
+U 1 1 5C0E5435
+P 2550 6350
+F 0 "#PWR?" H 2550 6350 30  0001 C CNN
+F 1 "GND" H 2550 6280 30  0001 C CNN
+F 2 "" H 2550 6350 50  0001 C CNN
+F 3 "" H 2550 6350 50  0001 C CNN
+	1    2550 6350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5C0E6810
+P 5000 1150
+F 0 "#PWR?" H 5000 1110 30  0001 C CNN
+F 1 "+3.3V" H 5009 1288 30  0000 C CNN
+F 2 "" H 5000 1150 50  0001 C CNN
+F 3 "" H 5000 1150 50  0001 C CNN
+	1    5000 1150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C0E6857
+P 5000 1850
+F 0 "#PWR?" H 5000 1850 30  0001 C CNN
+F 1 "GND" H 5000 1780 30  0001 C CNN
+F 2 "" H 5000 1850 50  0001 C CNN
+F 3 "" H 5000 1850 50  0001 C CNN
+	1    5000 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Capacitors:2.2UF-0603-10V-20% C?
+U 1 1 5C0E6A1E
+P 5950 1600
+F 0 "C?" H 6058 1692 45  0000 L CNN
+F 1 "2.2uF" H 6058 1608 45  0000 L CNN
+F 2 "0603" H 5950 1850 20  0001 C CNN
+F 3 "" H 5950 1600 50  0001 C CNN
+F 4 "" H 6058 1566 60  0000 L CNN "Field4"
+	1    5950 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power2:-3V3 #PWR?
+U 1 1 5C0E7479
+P 5950 1400
+F 0 "#PWR?" H 5950 1500 50  0001 C CNN
+F 1 "-3V3" H 5965 1573 50  0000 C CNN
+F 2 "" H 5950 1400 50  0001 C CNN
+F 3 "" H 5950 1400 50  0001 C CNN
+	1    5950 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C0E74C5
+P 5950 1700
+F 0 "#PWR?" H 5950 1700 30  0001 C CNN
+F 1 "GND" H 5950 1630 30  0001 C CNN
+F 2 "" H 5950 1700 50  0001 C CNN
+F 3 "" H 5950 1700 50  0001 C CNN
+	1    5950 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-Capacitors:2.2UF-0603-10V-20% C?
+U 1 1 5C0E7A2B
+P 4250 1550
+F 0 "C?" H 4142 1558 45  0000 R CNN
+F 1 "1uF" H 4142 1642 45  0000 R CNN
+F 2 "0603" H 4250 1800 20  0001 C CNN
+F 3 "" H 4250 1550 50  0001 C CNN
+F 4 "" H 4358 1516 60  0000 L CNN "Field4"
+	1    4250 1550
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4600 1650 4600 1750
+Wire Wire Line
+	4600 1750 4250 1750
+Wire Wire Line
+	4250 1450 4600 1450
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5C0E7CD4
+P 4600 1350
+F 0 "#PWR?" H 4600 1310 30  0001 C CNN
+F 1 "+3.3V" V 4609 1457 30  0000 L CNN
+F 2 "" H 4600 1350 50  0001 C CNN
+F 3 "" H 4600 1350 50  0001 C CNN
+	1    4600 1350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L dk_Interface-Analog-Switches-Multiplexers-Demultiplexers:CD74HC4067M96 U?
+U 1 1 5C0E85A8
+P 8550 3350
+F 0 "U?" H 9000 2000 60  0000 C CNN
+F 1 "CD74HC4067M96" H 8650 1850 60  0000 C CNN
+F 2 "digikey-footprints:SOIC-24_W7.50mm" H 8750 3550 60  0001 L CNN
+F 3 "http://www.ti.com/lit/ds/symlink/cd74hc4067.pdf" H 8750 3650 60  0001 L CNN
+F 4 "296-29408-1-ND" H 8750 3750 60  0001 L CNN "Digi-Key_PN"
+F 5 "CD74HC4067M96" H 8750 3850 60  0001 L CNN "MPN"
+F 6 "Integrated Circuits (ICs)" H 8750 3950 60  0001 L CNN "Category"
+F 7 "Interface - Analog Switches, Multiplexers, Demultiplexers" H 8750 4050 60  0001 L CNN "Family"
+F 8 "http://www.ti.com/lit/ds/symlink/cd74hc4067.pdf" H 8750 4150 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/texas-instruments/CD74HC4067M96/296-29408-1-ND/2741760" H 8750 4250 60  0001 L CNN "DK_Detail_Page"
+F 10 "IC MUX/DEMUX 1X16 24SOIC" H 8750 4350 60  0001 L CNN "Description"
+F 11 "Texas Instruments" H 8750 4450 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 8750 4550 60  0001 L CNN "Status"
+	1    8550 3350
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C0E8C75
+P 8450 4550
+F 0 "#PWR?" H 8450 4550 30  0001 C CNN
+F 1 "GND" H 8450 4480 30  0001 C CNN
+F 2 "" H 8450 4550 50  0001 C CNN
+F 3 "" H 8450 4550 50  0001 C CNN
+	1    8450 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5C0E8F37
+P 8450 2250
+F 0 "#PWR?" H 8450 2210 30  0001 C CNN
+F 1 "+3.3V" H 8459 2388 30  0000 C CNN
+F 2 "" H 8450 2250 50  0001 C CNN
+F 3 "" H 8450 2250 50  0001 C CNN
+	1    8450 2250
+	1    0    0    -1  
+$EndComp
+$Sheet
+S 10200 700  750  200 
+U 5C0EA929
+F0 "Sheet5C0EA928" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 800 50 
+F3 "INPUT" I R 10950 800 50 
+$EndSheet
+$Sheet
+S 10200 1050 750  200 
+U 5C0EC5A0
+F0 "sheet5C0EC59C" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 1150 50 
+F3 "INPUT" I R 10950 1150 50 
+$EndSheet
+$Sheet
+S 10200 1400 750  200 
+U 5C0EC5FC
+F0 "sheet5C0EC5F8" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 1500 50 
+F3 "INPUT" I R 10950 1500 50 
+$EndSheet
+$Sheet
+S 10200 1750 750  200 
+U 5C0EC658
+F0 "sheet5C0EC654" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 1850 50 
+F3 "INPUT" I R 10950 1850 50 
+$EndSheet
+$Sheet
+S 10200 2100 750  200 
+U 5C0EC6B4
+F0 "sheet5C0EC6B0" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 2200 50 
+F3 "INPUT" I R 10950 2200 50 
+$EndSheet
+$Sheet
+S 10200 2450 750  200 
+U 5C0EC72E
+F0 "sheet5C0EC72A" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 2550 50 
+F3 "INPUT" I R 10950 2550 50 
+$EndSheet
+$Sheet
+S 10200 2800 750  200 
+U 5C0EC78A
+F0 "sheet5C0EC786" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 2900 50 
+F3 "INPUT" I R 10950 2900 50 
+$EndSheet
+$Sheet
+S 10200 3150 750  200 
+U 5C0EC822
+F0 "sheet5C0EC81E" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 3250 50 
+F3 "INPUT" I R 10950 3250 50 
+$EndSheet
+$Sheet
+S 10200 3500 750  200 
+U 5C0ED302
+F0 "sheet5C0ED2F7" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 3600 50 
+F3 "INPUT" I R 10950 3600 50 
+$EndSheet
+$Sheet
+S 10200 3850 750  200 
+U 5C0ED306
+F0 "sheet5C0ED2F8" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 3950 50 
+F3 "INPUT" I R 10950 3950 50 
+$EndSheet
+$Sheet
+S 10200 4200 750  200 
+U 5C0ED30A
+F0 "sheet5C0ED2F9" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 4300 50 
+F3 "INPUT" I R 10950 4300 50 
+$EndSheet
+$Sheet
+S 10200 4550 750  200 
+U 5C0ED30E
+F0 "sheet5C0ED2FA" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 4650 50 
+F3 "INPUT" I R 10950 4650 50 
+$EndSheet
+$Sheet
+S 10200 4900 750  200 
+U 5C0ED312
+F0 "sheet5C0ED2FB" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 5000 50 
+F3 "INPUT" I R 10950 5000 50 
+$EndSheet
+$Sheet
+S 10200 5250 750  200 
+U 5C0ED316
+F0 "sheet5C0ED2FC" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 5350 50 
+F3 "INPUT" I R 10950 5350 50 
+$EndSheet
+$Sheet
+S 10200 5600 750  200 
+U 5C0ED31A
+F0 "sheet5C0ED2FD" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 5700 50 
+F3 "INPUT" I R 10950 5700 50 
+$EndSheet
+$Sheet
+S 10200 5950 750  200 
+U 5C0ED31E
+F0 "sheet5C0ED2FE" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 10200 6050 50 
+F3 "INPUT" I R 10950 6050 50 
+$EndSheet
+Wire Wire Line
+	9100 2650 9100 800 
+Wire Wire Line
+	9100 800  10200 800 
+Wire Wire Line
+	10200 1150 9200 1150
+Wire Wire Line
+	9200 1150 9200 2750
+Wire Wire Line
+	9300 2850 9300 1500
+Wire Wire Line
+	9300 1500 10200 1500
+Wire Wire Line
+	10200 1850 9400 1850
+Wire Wire Line
+	9400 1850 9400 2950
+Wire Wire Line
+	9500 3050 9500 2200
+Wire Wire Line
+	9500 2200 10200 2200
+Wire Wire Line
+	9600 3150 9600 2550
+Wire Wire Line
+	9600 2550 10200 2550
+Wire Wire Line
+	10200 2900 9700 2900
+Wire Wire Line
+	9700 2900 9700 3250
+Wire Wire Line
+	9800 3350 9800 3250
+Wire Wire Line
+	9800 3250 10200 3250
+Wire Wire Line
+	10200 3600 10100 3600
+Wire Wire Line
+	10100 3600 10100 3450
+Wire Wire Line
+	9800 3550 9800 3950
+Wire Wire Line
+	9800 3950 10200 3950
+Wire Wire Line
+	10200 4300 9700 4300
+Wire Wire Line
+	9700 4300 9700 3650
+Wire Wire Line
+	9600 3750 9600 4650
+Wire Wire Line
+	9600 4650 10200 4650
+Wire Wire Line
+	10200 5000 9500 5000
+Wire Wire Line
+	9500 5000 9500 3850
+Wire Wire Line
+	9400 3950 9400 5350
+Wire Wire Line
+	9400 5350 10200 5350
+Wire Wire Line
+	9300 4050 9300 5700
+Wire Wire Line
+	9300 5700 10200 5700
+Wire Wire Line
+	10200 6050 9200 6050
+Wire Wire Line
+	9200 6050 9200 4150
+Wire Wire Line
+	9100 2650 8950 2650
+Wire Wire Line
+	8950 2750 9200 2750
+Wire Wire Line
+	8950 2850 9300 2850
+Wire Wire Line
+	8950 2950 9400 2950
+Wire Wire Line
+	8950 3050 9500 3050
+Wire Wire Line
+	8950 3150 9600 3150
+Wire Wire Line
+	8950 3250 9700 3250
+Wire Wire Line
+	8950 3350 9800 3350
+Wire Wire Line
+	8950 3450 10100 3450
+Wire Wire Line
+	8950 3550 9800 3550
+Wire Wire Line
+	8950 3650 9700 3650
+Wire Wire Line
+	8950 3750 9600 3750
+Wire Wire Line
+	8950 3850 9500 3850
+Wire Wire Line
+	8950 3950 9400 3950
+Wire Wire Line
+	8950 4050 9300 4050
+Wire Wire Line
+	8950 4150 9200 4150
+Wire Wire Line
+	8950 2550 8950 2300
+Wire Wire Line
+	8950 2300 8900 2300
+Text Label 8900 2300 2    50   ~ 0
+MUX_OUT
+Text Label 8050 2750 2    50   ~ 0
+S0
+Text Label 8050 2850 2    50   ~ 0
+S1
+Text Label 8050 2950 2    50   ~ 0
+S2
+Text Label 8050 3050 2    50   ~ 0
+S3
+$Comp
+L power:GND #PWR?
+U 1 1 5C1085D4
+P 8950 4250
+F 0 "#PWR?" H 8950 4250 30  0001 C CNN
+F 1 "GND" H 8950 4180 30  0001 C CNN
+F 2 "" H 8950 4250 50  0001 C CNN
+F 3 "" H 8950 4250 50  0001 C CNN
+	1    8950 4250
+	1    0    0    -1  
+$EndComp
+Text Label 5350 3200 0    50   ~ 0
+S0
+Text Label 5350 3300 0    50   ~ 0
+S1
+Text Label 5350 3400 0    50   ~ 0
+S2
+Text Label 5350 3500 0    50   ~ 0
+S3
+$Comp
+L SparkFun-IC-Amplifiers:OPAMP-DUAL IC?
+U 1 1 5C10B000
+P 7300 2750
+F 0 "IC?" H 7300 3210 45  0000 C CNN
+F 1 "OPAMP-DUAL" H 7300 3126 45  0000 C CNN
+F 2 "DIP08" H 7300 3100 20  0001 C CNN
+F 3 "" H 7300 2750 50  0001 C CNN
+F 4 "NA-XXXXX" H 7300 3031 60  0000 C CNN "Field4"
+	1    7300 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-IC-Amplifiers:OPAMP-DUAL IC?
+U 2 1 5C10B340
+P 7300 3550
+F 0 "IC?" H 7300 4010 45  0000 C CNN
+F 1 "OPAMP-DUAL" H 7300 3926 45  0000 C CNN
+F 2 "DIP08" H 7300 3900 20  0001 C CNN
+F 3 "" H 7300 3550 50  0001 C CNN
+F 4 "NA-XXXXX" H 7300 3831 60  0000 C CNN "Field4"
+	2    7300 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-IC-Amplifiers:OPAMP-DUAL IC?
+U 3 1 5C10B42C
+P 7200 4500
+F 0 "IC?" H 7328 4595 45  0000 L CNN
+F 1 "OPAMP-DUAL" H 7328 4511 45  0000 L CNN
+F 2 "DIP08" H 7200 4850 20  0001 C CNN
+F 3 "" H 7200 4500 50  0001 C CNN
+F 4 "NA-XXXXX" H 7328 4416 60  0000 L CNN "Field4"
+	3    7200 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Memory_EEPROM:CAT24M01W U?
+U 1 1 5C10B79C
+P 6600 5800
+F 0 "U?" H 6600 6278 50  0000 C CNN
+F 1 "CAT24M01W" H 6600 6187 50  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 7450 5550 50  0001 C CNN
+F 3 "https://www.onsemi.com/pub/Collateral/CAT24M01-D.PDF" H 6600 5800 50  0001 C CNN
+	1    6600 5800
+	1    0    0    -1  
+$EndComp
+Text Label 5350 3700 0    50   ~ 0
+SDA
+Text Label 5350 3600 0    50   ~ 0
+SCL
+Text Label 7000 5800 0    50   ~ 0
+SCL
+Text Label 7000 5700 0    50   ~ 0
+SDA
+$Comp
+L power:GND #PWR?
+U 1 1 5C10C085
+P 6600 6100
+F 0 "#PWR?" H 6600 6100 30  0001 C CNN
+F 1 "GND" H 6600 6030 30  0001 C CNN
+F 2 "" H 6600 6100 50  0001 C CNN
+F 3 "" H 6600 6100 50  0001 C CNN
+	1    6600 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5C10C1AD
+P 6600 5500
+F 0 "#PWR?" H 6600 5460 30  0001 C CNN
+F 1 "+3.3V" H 6609 5638 30  0000 C CNN
+F 2 "" H 6600 5500 50  0001 C CNN
+F 3 "" H 6600 5500 50  0001 C CNN
+	1    6600 5500
+	1    0    0    -1  
+$EndComp
+Text Label 3550 2850 0    50   ~ 0
+SWCLK
+Text Label 3550 2750 0    50   ~ 0
+SWDIO
+$EndSCHEMATC

@@ -1,0 +1,209 @@
+EESchema Schematic File Version 4
+LIBS:probe-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 18
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Sheet
+S 3800 1250 750  200 
+U 5C14385B
+F0 "sheet5C143848" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 1350 50 
+F3 "INPUT" I R 4550 1350 50 
+$EndSheet
+$Sheet
+S 3800 1600 750  200 
+U 5C14385F
+F0 "sheet5C143849" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 1700 50 
+F3 "INPUT" I R 4550 1700 50 
+$EndSheet
+$Sheet
+S 3800 1950 750  200 
+U 5C143863
+F0 "sheet5C14384A" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 2050 50 
+F3 "INPUT" I R 4550 2050 50 
+$EndSheet
+$Sheet
+S 3800 2300 750  200 
+U 5C143867
+F0 "sheet5C14384B" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 2400 50 
+F3 "INPUT" I R 4550 2400 50 
+$EndSheet
+$Sheet
+S 3800 2650 750  200 
+U 5C14386B
+F0 "sheet5C14384C" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 2750 50 
+F3 "INPUT" I R 4550 2750 50 
+$EndSheet
+$Sheet
+S 3800 3000 750  200 
+U 5C14386F
+F0 "sheet5C14384D" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 3100 50 
+F3 "INPUT" I R 4550 3100 50 
+$EndSheet
+$Sheet
+S 3800 3350 750  200 
+U 5C143873
+F0 "sheet5C14384E" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 3450 50 
+F3 "INPUT" I R 4550 3450 50 
+$EndSheet
+$Sheet
+S 3800 3700 750  200 
+U 5C143877
+F0 "sheet5C14384F" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 3800 50 
+F3 "INPUT" I R 4550 3800 50 
+$EndSheet
+$Sheet
+S 3800 4050 750  200 
+U 5C14387B
+F0 "sheet5C143850" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 4150 50 
+F3 "INPUT" I R 4550 4150 50 
+$EndSheet
+$Sheet
+S 3800 4400 750  200 
+U 5C14387F
+F0 "sheet5C143851" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 4500 50 
+F3 "INPUT" I R 4550 4500 50 
+$EndSheet
+$Sheet
+S 3800 4750 750  200 
+U 5C143883
+F0 "sheet5C143852" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 4850 50 
+F3 "INPUT" I R 4550 4850 50 
+$EndSheet
+$Sheet
+S 3800 5100 750  200 
+U 5C143887
+F0 "sheet5C143853" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 5200 50 
+F3 "INPUT" I R 4550 5200 50 
+$EndSheet
+$Sheet
+S 3800 5450 750  200 
+U 5C14388B
+F0 "sheet5C143854" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 5550 50 
+F3 "INPUT" I R 4550 5550 50 
+$EndSheet
+$Sheet
+S 3800 5800 750  200 
+U 5C14388F
+F0 "sheet5C143855" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 5900 50 
+F3 "INPUT" I R 4550 5900 50 
+$EndSheet
+$Sheet
+S 3800 6150 750  200 
+U 5C143893
+F0 "sheet5C143856" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 6250 50 
+F3 "INPUT" I R 4550 6250 50 
+$EndSheet
+$Sheet
+S 3800 6500 750  200 
+U 5C143897
+F0 "sheet5C143857" 50
+F1 "file5C0EA928.sch" 50
+F2 "OUTPUT" I L 3800 6600 50 
+F3 "INPUT" I R 4550 6600 50 
+$EndSheet
+Text HLabel 3800 1350 0    50   Input ~ 0
+OUT1
+Text HLabel 3800 1700 0    50   Input ~ 0
+OUT2
+Text HLabel 3800 2050 0    50   Input ~ 0
+OUT3
+Text HLabel 3800 2400 0    50   Input ~ 0
+OUT4
+Text HLabel 3800 2750 0    50   Input ~ 0
+OUT5
+Text HLabel 3800 3100 0    50   Input ~ 0
+OUT6
+Text HLabel 3800 3450 0    50   Input ~ 0
+OUT7
+Text HLabel 3800 3800 0    50   Input ~ 0
+OUT8
+Text HLabel 3800 4150 0    50   Input ~ 0
+OUT9
+Text HLabel 3800 4500 0    50   Input ~ 0
+OUT10
+Text HLabel 3800 4850 0    50   Input ~ 0
+OUT11
+Text HLabel 3800 5200 0    50   Input ~ 0
+OUT12
+Text HLabel 3800 5550 0    50   Input ~ 0
+OUT13
+Text HLabel 3800 5900 0    50   Input ~ 0
+OUT14
+Text HLabel 3800 6250 0    50   Input ~ 0
+OUT15
+Text HLabel 3800 6600 0    50   Input ~ 0
+OUT16
+Text HLabel 4550 1350 2    50   Input ~ 0
+IN1
+Text HLabel 4550 1700 2    50   Input ~ 0
+IN2
+Text HLabel 4550 2050 2    50   Input ~ 0
+IN3
+Text HLabel 4550 2400 2    50   Input ~ 0
+IN4
+Text HLabel 4550 2750 2    50   Input ~ 0
+IN5
+Text HLabel 4550 3100 2    50   Input ~ 0
+IN6
+Text HLabel 4550 3450 2    50   Input ~ 0
+IN7
+Text HLabel 4550 3800 2    50   Input ~ 0
+IN8
+Text HLabel 4550 4150 2    50   Input ~ 0
+IN9
+Text HLabel 4550 4500 2    50   Input ~ 0
+IN10
+Text HLabel 4550 4850 2    50   Input ~ 0
+IN11
+Text HLabel 4550 5200 2    50   Input ~ 0
+IN12
+Text HLabel 4550 5550 2    50   Input ~ 0
+IN13
+Text HLabel 4550 5900 2    50   Input ~ 0
+IN14
+Text HLabel 4550 6250 2    50   Input ~ 0
+IN15
+Text HLabel 4550 6600 2    50   Input ~ 0
+IN16
+$EndSCHEMATC

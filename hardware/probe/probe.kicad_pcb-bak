@@ -286,7 +286,7 @@
   )
 
   (module Package_SO:SOIC-8_3.9x4.9mm_P1.27mm (layer F.Cu) (tedit 5A02F2D3) (tstamp 5C1BFFAD)
-    (at 207.57 33.54)
+    (at 164.48 53.75)
     (descr "8-Lead Plastic Small Outline (SN) - Narrow, 3.90 mm Body [SOIC] (see Microchip Packaging Specification 00000049BS.pdf)")
     (tags "SOIC 1.27")
     (path /5C14A26D)
@@ -379,7 +379,7 @@
   )
 
   (module 0603 (layer F.Cu) (tedit 596180EF) (tstamp 5C15A8A5)
-    (at 198.19 28.08)
+    (at 155.1 48.29)
     (descr "GENERIC 1608 (0603) PACKAGE")
     (tags "GENERIC 1608 (0603) PACKAGE")
     (path /5C1666CF)
@@ -415,7 +415,7 @@
   )
 
   (module 0603 (layer F.Cu) (tedit 596180EF) (tstamp 5C15A88D)
-    (at 202.99 32.05 90)
+    (at 159.9 52.26 90)
     (descr "GENERIC 1608 (0603) PACKAGE")
     (tags "GENERIC 1608 (0603) PACKAGE")
     (path /5C1622A3)
@@ -451,7 +451,7 @@
   )
 
   (module 0603 (layer F.Cu) (tedit 596180EF) (tstamp 5C15A875)
-    (at 201.47 33.74 90)
+    (at 158.38 53.95 90)
     (descr "GENERIC 1608 (0603) PACKAGE")
     (tags "GENERIC 1608 (0603) PACKAGE")
     (path /5C16253B)
@@ -487,7 +487,7 @@
   )
 
   (module 0603 (layer F.Cu) (tedit 596180EF) (tstamp 5C15A85D)
-    (at 193.713061 32.213901)
+    (at 150.623061 52.423901)
     (descr "GENERIC 1608 (0603) PACKAGE")
     (tags "GENERIC 1608 (0603) PACKAGE")
     (path /5C167090)
@@ -582,7 +582,7 @@
   )
 
   (module HC49UP (layer F.Cu) (tedit 59628502) (tstamp 5C155B20)
-    (at 161.96 44.47 180)
+    (at 181.3 33.4 180)
     (descr "HC-49/UP 11.4X4.8MM SMD CRYSTAL")
     (tags "HC-49/UP 11.4X4.8MM SMD CRYSTAL")
     (path /5C154CFD)
@@ -1473,7 +1473,7 @@
   )
 
   (module 0603 (layer F.Cu) (tedit 596180EF) (tstamp 5C147DE2)
-    (at 157.98 40.57 180)
+    (at 177.32 29.5 180)
     (descr "GENERIC 1608 (0603) PACKAGE")
     (tags "GENERIC 1608 (0603) PACKAGE")
     (path /5C0DF7B1)
@@ -1905,7 +1905,7 @@
   )
 
   (module 0603 (layer F.Cu) (tedit 596180EF) (tstamp 5C147CC2)
-    (at 165.93 40.57 180)
+    (at 185.27 29.5 180)
     (descr "GENERIC 1608 (0603) PACKAGE")
     (tags "GENERIC 1608 (0603) PACKAGE")
     (path /5C0DF678)
@@ -2837,7 +2837,7 @@
   )
 
   (module Package_SO:SOIC-8_3.9x4.9mm_P1.27mm (layer F.Cu) (tedit 5A02F2D3) (tstamp 5C1479F0)
-    (at 206.555001 24.815001)
+    (at 163.465001 45.025001)
     (descr "8-Lead Plastic Small Outline (SN) - Narrow, 3.90 mm Body [SOIC] (see Microchip Packaging Specification 00000049BS.pdf)")
     (tags "SOIC 1.27")
     (path /5C10B79C)
@@ -2891,7 +2891,7 @@
   )
 
   (module Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm (layer F.Cu) (tedit 5A02F25C) (tstamp 5C1479D3)
-    (at 139.04 64.11)
+    (at 138.21 29.68)
     (descr "20-Lead Plastic Thin Shrink Small Outline (ST)-4.4 mm Body [TSSOP] (see Microchip Packaging Specification 00000049BS.pdf)")
     (tags "SSOP 0.65")
     (path /5C0DEFFF)

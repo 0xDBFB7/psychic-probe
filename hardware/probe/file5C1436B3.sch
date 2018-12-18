@@ -174,36 +174,36 @@ Text HLabel 3800 6250 0    50   Input ~ 0
 OUT15
 Text HLabel 3800 6600 0    50   Input ~ 0
 OUT16
-Text HLabel 4550 1350 2    50   Input ~ 0
-IN1
-Text HLabel 4550 1700 2    50   Input ~ 0
-IN2
-Text HLabel 4550 2050 2    50   Input ~ 0
-IN3
-Text HLabel 4550 2400 2    50   Input ~ 0
-IN4
-Text HLabel 4550 2750 2    50   Input ~ 0
-IN5
-Text HLabel 4550 3100 2    50   Input ~ 0
-IN6
-Text HLabel 4550 3450 2    50   Input ~ 0
-IN7
-Text HLabel 4550 3800 2    50   Input ~ 0
-IN8
 Text HLabel 4550 4150 2    50   Input ~ 0
 IN9
-Text HLabel 4550 4500 2    50   Input ~ 0
-IN10
-Text HLabel 4550 4850 2    50   Input ~ 0
-IN11
-Text HLabel 4550 5200 2    50   Input ~ 0
-IN12
-Text HLabel 4550 5550 2    50   Input ~ 0
-IN13
-Text HLabel 4550 5900 2    50   Input ~ 0
-IN14
-Text HLabel 4550 6250 2    50   Input ~ 0
-IN15
+Text HLabel 4550 3800 2    50   Input ~ 0
+IN8
+Text HLabel 4550 3450 2    50   Input ~ 0
+IN7
+Text HLabel 4550 3100 2    50   Input ~ 0
+IN6
+Text HLabel 4550 2750 2    50   Input ~ 0
+IN5
+Text HLabel 4550 2400 2    50   Input ~ 0
+IN4
+Text HLabel 4550 2050 2    50   Input ~ 0
+IN3
+Text HLabel 4550 1700 2    50   Input ~ 0
+IN2
+Text HLabel 4550 1350 2    50   Input ~ 0
+IN1
 Text HLabel 4550 6600 2    50   Input ~ 0
 IN16
+Text HLabel 4550 6250 2    50   Input ~ 0
+IN15
+Text HLabel 4550 5900 2    50   Input ~ 0
+IN14
+Text HLabel 4550 5550 2    50   Input ~ 0
+IN13
+Text HLabel 4550 5200 2    50   Input ~ 0
+IN12
+Text HLabel 4550 4850 2    50   Input ~ 0
+IN11
+Text HLabel 4550 4500 2    50   Input ~ 0
+IN10
 $EndSCHEMATC

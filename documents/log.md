@@ -130,9 +130,9 @@ I sent the board out to be produced professionally. The vias failed to conduct o
 
 Board populated.
 
+Using some boilerplate code from the capacitive sensor.
 
+Retaining the ADC DMA code - interestingly, neither project has any DMA entries listed in STM32Cube. I guess I've forgotten how all that worked.
 
-
-
-
+The optocoupler refused to function when powered by a CH340 3v3 rail. Interesting!
 

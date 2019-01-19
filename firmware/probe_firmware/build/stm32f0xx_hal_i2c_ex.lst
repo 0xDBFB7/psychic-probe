@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccbQ0LMM.s 			page 1
+ARM GAS  /tmp/ccqa3RKB.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccbQ0LMM.s 			page 1
   31:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****           (++) HAL_I2CEx_EnableFastModePlus()
   32:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****           (++) HAL_I2CEx_DisableFastModePlus()
   33:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   @endverbatim
-ARM GAS  /tmp/ccbQ0LMM.s 			page 2
+ARM GAS  /tmp/ccqa3RKB.s 			page 2
 
 
   34:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   ******************************************************************************
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccbQ0LMM.s 			page 1
   88:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** 
   89:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** /** @defgroup I2CEx_Exported_Functions_Group1 Extended features functions
   90:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   * @brief    Extended features functions
-ARM GAS  /tmp/ccbQ0LMM.s 			page 3
+ARM GAS  /tmp/ccqa3RKB.s 			page 3
 
 
   91:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****  *
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccbQ0LMM.s 			page 1
  123:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** 
  124:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****     /* Disable the selected I2C peripheral */
  125:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****     __HAL_I2C_DISABLE(hi2c);
-ARM GAS  /tmp/ccbQ0LMM.s 			page 4
+ARM GAS  /tmp/ccqa3RKB.s 			page 4
 
 
  126:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccbQ0LMM.s 			page 1
   75              		.loc 1 131 0 discriminator 2
   76 0032 1E68     		ldr	r6, [r3]
   77 0034 3143     		orrs	r1, r6
-ARM GAS  /tmp/ccbQ0LMM.s 			page 5
+ARM GAS  /tmp/ccqa3RKB.s 			page 5
 
 
   78              	.LVL3:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccbQ0LMM.s 			page 1
  118 0000 F0B5     		push	{r4, r5, r6, r7, lr}
  119              	.LCFI1:
  120              		.cfi_def_cfa_offset 20
-ARM GAS  /tmp/ccbQ0LMM.s 			page 6
+ARM GAS  /tmp/ccqa3RKB.s 			page 6
 
 
  121              		.cfi_offset 4, -20
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccbQ0LMM.s 			page 1
  134              		.loc 1 196 0
  135 000c 0220     		movs	r0, #2
  136              	.LVL7:
-ARM GAS  /tmp/ccbQ0LMM.s 			page 7
+ARM GAS  /tmp/ccqa3RKB.s 			page 7
 
 
  163:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   {
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccbQ0LMM.s 			page 1
  190:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** 
  179              		.loc 1 190 0 discriminator 2
  180 003c 0020     		movs	r0, #0
-ARM GAS  /tmp/ccbQ0LMM.s 			page 8
+ARM GAS  /tmp/ccqa3RKB.s 			page 8
 
 
  187:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** 
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccbQ0LMM.s 			page 1
  224:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** 
  225:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****     __HAL_I2C_ENABLE(hi2c);
  226:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** 
-ARM GAS  /tmp/ccbQ0LMM.s 			page 9
+ARM GAS  /tmp/ccqa3RKB.s 			page 9
 
 
  227:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****     hi2c->State = HAL_I2C_STATE_READY;
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccbQ0LMM.s 			page 1
  281:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   * @brief Enable the I2C fast mode plus driving capability.
  282:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   * @param ConfigFastModePlus Selects the pin.
  283:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   *   This parameter can be one of the @ref I2CEx_FastModePlus values
-ARM GAS  /tmp/ccbQ0LMM.s 			page 10
+ARM GAS  /tmp/ccqa3RKB.s 			page 10
 
 
  284:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   * @note  For I2C1, fast mode plus driving capability can be enabled on all selected
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccbQ0LMM.s 			page 1
  239 0012 0193     		str	r3, [sp, #4]
  240 0014 019B     		ldr	r3, [sp, #4]
  241              	.LBE4:
-ARM GAS  /tmp/ccbQ0LMM.s 			page 11
+ARM GAS  /tmp/ccqa3RKB.s 			page 11
 
 
  302:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** }
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccbQ0LMM.s 			page 1
  321:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   assert_param(IS_I2C_FASTMODEPLUS(ConfigFastModePlus));
  322:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c **** 
  323:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   /* Enable SYSCFG clock */
-ARM GAS  /tmp/ccbQ0LMM.s 			page 12
+ARM GAS  /tmp/ccqa3RKB.s 			page 12
 
 
  324:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c ****   __HAL_RCC_SYSCFG_CLK_ENABLE();
@@ -717,23 +717,23 @@ ARM GAS  /tmp/ccbQ0LMM.s 			page 1
  325              		.file 10 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
  326              		.file 11 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
  327              		.file 12 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_i2c.h"
-ARM GAS  /tmp/ccbQ0LMM.s 			page 13
+ARM GAS  /tmp/ccqa3RKB.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f0xx_hal_i2c_ex.c
-     /tmp/ccbQ0LMM.s:16     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 $t
-     /tmp/ccbQ0LMM.s:23     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 HAL_I2CEx_ConfigAnalogFilter
-     /tmp/ccbQ0LMM.s:99     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000048 $d
-     /tmp/ccbQ0LMM.s:104    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 $t
-     /tmp/ccbQ0LMM.s:111    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 HAL_I2CEx_ConfigDigitalFilter
-     /tmp/ccbQ0LMM.s:194    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000044 $d
-     /tmp/ccbQ0LMM.s:199    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 $t
-     /tmp/ccbQ0LMM.s:206    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 HAL_I2CEx_EnableFastModePlus
-     /tmp/ccbQ0LMM.s:252    .text.HAL_I2CEx_EnableFastModePlus:0000000000000020 $d
-     /tmp/ccbQ0LMM.s:258    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 $t
-     /tmp/ccbQ0LMM.s:265    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 HAL_I2CEx_DisableFastModePlus
-     /tmp/ccbQ0LMM.s:310    .text.HAL_I2CEx_DisableFastModePlus:0000000000000020 $d
+     /tmp/ccqa3RKB.s:16     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 $t
+     /tmp/ccqa3RKB.s:23     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000000 HAL_I2CEx_ConfigAnalogFilter
+     /tmp/ccqa3RKB.s:99     .text.HAL_I2CEx_ConfigAnalogFilter:0000000000000048 $d
+     /tmp/ccqa3RKB.s:104    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 $t
+     /tmp/ccqa3RKB.s:111    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000000 HAL_I2CEx_ConfigDigitalFilter
+     /tmp/ccqa3RKB.s:194    .text.HAL_I2CEx_ConfigDigitalFilter:0000000000000044 $d
+     /tmp/ccqa3RKB.s:199    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 $t
+     /tmp/ccqa3RKB.s:206    .text.HAL_I2CEx_EnableFastModePlus:0000000000000000 HAL_I2CEx_EnableFastModePlus
+     /tmp/ccqa3RKB.s:252    .text.HAL_I2CEx_EnableFastModePlus:0000000000000020 $d
+     /tmp/ccqa3RKB.s:258    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 $t
+     /tmp/ccqa3RKB.s:265    .text.HAL_I2CEx_DisableFastModePlus:0000000000000000 HAL_I2CEx_DisableFastModePlus
+     /tmp/ccqa3RKB.s:310    .text.HAL_I2CEx_DisableFastModePlus:0000000000000020 $d
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS

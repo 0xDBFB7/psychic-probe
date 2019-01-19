@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccZFuMnY.s 			page 1
+ARM GAS  /tmp/cchOW0CH.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
   31:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   *   1. Redistributions of source code must retain the above copyright notice,
   32:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   *      this list of conditions and the following disclaimer.
   33:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
-ARM GAS  /tmp/ccZFuMnY.s 			page 2
+ARM GAS  /tmp/cchOW0CH.s 			page 2
 
 
   34:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   *      this list of conditions and the following disclaimer in the documentation
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
   88:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   */
   89:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c **** 
   90:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c **** /** @defgroup UARTEx_Exported_Functions_Group1 Extended Initialization and de-initialization functi
-ARM GAS  /tmp/ccZFuMnY.s 			page 3
+ARM GAS  /tmp/cchOW0CH.s 			page 3
 
 
   91:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   * @brief    Extended Initialization and Configuration Functions
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
  145:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****       +-----------------------------------------------------------------------+
  146:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****       |  M1 bit |  M0 bit |  PCE bit  |             UART frame                |
  147:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****       |---------|---------|-----------|---------------------------------------|
-ARM GAS  /tmp/ccZFuMnY.s 			page 4
+ARM GAS  /tmp/cchOW0CH.s 			page 4
 
 
  148:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****       |    0    |    0    |     0     |    | SB |    8 bit data   | STB |     |
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
   44 0004 0F00     		movs	r7, r1
   45 0006 0192     		str	r2, [sp, #4]
   46 0008 1D00     		movs	r5, r3
-ARM GAS  /tmp/ccZFuMnY.s 			page 5
+ARM GAS  /tmp/cchOW0CH.s 			page 5
 
 
  184:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   uint32_t temp = 0x0U;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
  229:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   SET_BIT(huart->Instance->CR3, USART_CR3_DEM);
  230:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c **** 
  231:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   /* Set the Driver Enable polarity */
-ARM GAS  /tmp/ccZFuMnY.s 			page 6
+ARM GAS  /tmp/cchOW0CH.s 			page 6
 
 
  232:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   MODIFY_REG(huart->Instance->CR3, USART_CR3_DEP, Polarity);
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
   89 0032 2000     		movs	r0, r4
  215:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c **** 
   90              		.loc 1 215 0
-ARM GAS  /tmp/ccZFuMnY.s 			page 7
+ARM GAS  /tmp/cchOW0CH.s 			page 7
 
 
   91 0034 8B43     		bics	r3, r1
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
  133              	.LVL12:
  236:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   MODIFY_REG(huart->Instance->CR1, (USART_CR1_DEDT|USART_CR1_DEAT), temp);
  134              		.loc 1 236 0
-ARM GAS  /tmp/ccZFuMnY.s 			page 8
+ARM GAS  /tmp/cchOW0CH.s 			page 8
 
 
  135 006a 0D43     		orrs	r5, r1
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
  260:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   if(huart == NULL)
  261:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   {
  262:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****     return HAL_ERROR;
-ARM GAS  /tmp/ccZFuMnY.s 			page 9
+ARM GAS  /tmp/cchOW0CH.s 			page 9
 
 
  263:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   }
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
  317:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c **** 
  318:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   /* Enable the Peripheral */
  319:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   __HAL_UART_ENABLE(huart);
-ARM GAS  /tmp/ccZFuMnY.s 			page 10
+ARM GAS  /tmp/cchOW0CH.s 			page 10
 
 
  320:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c **** 
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
  374:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****                       ##### Peripheral Control functions #####
  375:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****  ===============================================================================
  376:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****     [..]
-ARM GAS  /tmp/ccZFuMnY.s 			page 11
+ARM GAS  /tmp/cchOW0CH.s 			page 11
 
 
  377:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****     This subsection provides extended functions allowing to control the UART.         
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
  431:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   /* Init tickstart for timeout managment*/
  432:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   tickstart = HAL_GetTick();
  433:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c **** 
-ARM GAS  /tmp/ccZFuMnY.s 			page 12
+ARM GAS  /tmp/cchOW0CH.s 			page 12
 
 
  434:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   /* Wait until REACK flag is set */
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
  488:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c **** 
  489:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   /* Process Locked */
  490:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   __HAL_LOCK(huart);
-ARM GAS  /tmp/ccZFuMnY.s 			page 13
+ARM GAS  /tmp/cchOW0CH.s 			page 13
 
 
  491:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c **** 
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
  527:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   /* Check the address length parameter */
  528:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   assert_param(IS_UART_ADDRESSLENGTH_DETECT(AddressLength));
  529:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c **** 
-ARM GAS  /tmp/ccZFuMnY.s 			page 14
+ARM GAS  /tmp/cchOW0CH.s 			page 14
 
 
  530:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c ****   huart->gState = HAL_UART_STATE_BUSY;
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
  227              		.file 2 "/home/arthurdent/Programs/gcc-arm-none-eabi-6-2017-q1-update/arm-none-eabi/include/machin
  228              		.file 3 "/home/arthurdent/Programs/gcc-arm-none-eabi-6-2017-q1-update/arm-none-eabi/include/sys/_s
  229              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
-ARM GAS  /tmp/ccZFuMnY.s 			page 15
+ARM GAS  /tmp/cchOW0CH.s 			page 15
 
 
  230              		.file 5 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f030x6.h"
@@ -849,16 +849,16 @@ ARM GAS  /tmp/ccZFuMnY.s 			page 1
  235              		.file 10 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
  236              		.file 11 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
  237              		.file 12 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h"
-ARM GAS  /tmp/ccZFuMnY.s 			page 16
+ARM GAS  /tmp/cchOW0CH.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f0xx_hal_uart_ex.c
-     /tmp/ccZFuMnY.s:16     .text.HAL_RS485Ex_Init:0000000000000000 $t
-     /tmp/ccZFuMnY.s:23     .text.HAL_RS485Ex_Init:0000000000000000 HAL_RS485Ex_Init
-     /tmp/ccZFuMnY.s:156    .text.HAL_RS485Ex_Init:0000000000000084 $d
-     /tmp/ccZFuMnY.s:162    .text.HAL_MultiProcessorEx_AddressLength_Set:0000000000000000 $t
-     /tmp/ccZFuMnY.s:169    .text.HAL_MultiProcessorEx_AddressLength_Set:0000000000000000 HAL_MultiProcessorEx_AddressLength_Set
+     /tmp/cchOW0CH.s:16     .text.HAL_RS485Ex_Init:0000000000000000 $t
+     /tmp/cchOW0CH.s:23     .text.HAL_RS485Ex_Init:0000000000000000 HAL_RS485Ex_Init
+     /tmp/cchOW0CH.s:156    .text.HAL_RS485Ex_Init:0000000000000084 $d
+     /tmp/cchOW0CH.s:162    .text.HAL_MultiProcessorEx_AddressLength_Set:0000000000000000 $t
+     /tmp/cchOW0CH.s:169    .text.HAL_MultiProcessorEx_AddressLength_Set:0000000000000000 HAL_MultiProcessorEx_AddressLength_Set
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

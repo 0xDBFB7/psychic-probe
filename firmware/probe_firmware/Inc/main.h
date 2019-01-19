@@ -55,6 +55,10 @@
 #define IN_X10_GPIO_Port GPIOA
 #define S0_Pin GPIO_PIN_5
 #define S0_GPIO_Port GPIOA
+#define S1_Pin GPIO_PIN_6
+#define S1_GPIO_Port GPIOA
+#define S2_Pin GPIO_PIN_7
+#define S2_GPIO_Port GPIOA
 #define S3_Pin GPIO_PIN_1
 #define S3_GPIO_Port GPIOB
 

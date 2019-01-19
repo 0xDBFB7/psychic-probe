@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc4tUEIX.s 			page 1
+ARM GAS  /tmp/cc8RQLXI.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
   31:Src/syscalls.c **** 
   32:Src/syscalls.c **** 
   33:Src/syscalls.c **** 
-ARM GAS  /tmp/cc4tUEIX.s 			page 2
+ARM GAS  /tmp/cc8RQLXI.s 			page 2
 
 
   34:Src/syscalls.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
   59              		.loc 1 48 0
   60 0018 0968     		ldr	r1, [r1]
   61              	.LVL2:
-ARM GAS  /tmp/cc4tUEIX.s 			page 3
+ARM GAS  /tmp/cc8RQLXI.s 			page 3
 
 
   51:Src/syscalls.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
   95              	.L5:
   96 0034 00000000 		.word	.LANCHOR0
   97 0038 00000000 		.word	end
-ARM GAS  /tmp/cc4tUEIX.s 			page 4
+ARM GAS  /tmp/cc8RQLXI.s 			page 4
 
 
   98 003c 08ED00E0 		.word	-536810232
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  140              		.syntax unified
  141              		.code	16
  142              		.thumb_func
-ARM GAS  /tmp/cc4tUEIX.s 			page 5
+ARM GAS  /tmp/cc8RQLXI.s 			page 5
 
 
  143              		.fpu softvfp
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  191              		.cfi_startproc
  192              		@ args = 0, pretend = 0, frame = 0
  193              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/cc4tUEIX.s 			page 6
+ARM GAS  /tmp/cc8RQLXI.s 			page 6
 
 
  194              		@ link register save eliminated.
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  241 0006 FEE7     		b	.L18
  242              	.L20:
  243              		.align	2
-ARM GAS  /tmp/cc4tUEIX.s 			page 7
+ARM GAS  /tmp/cc8RQLXI.s 			page 7
 
 
  244              	.L19:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  286              		@ sp needed
  287              	.LVL15:
  288              	.LVL16:
-ARM GAS  /tmp/cc4tUEIX.s 			page 8
+ARM GAS  /tmp/cc8RQLXI.s 			page 8
 
 
  289 0010 70BD     		pop	{r4, r5, r6, pc}
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  338              		.cfi_startproc
  339              		@ args = 0, pretend = 0, frame = 0
  340              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/cc4tUEIX.s 			page 9
+ARM GAS  /tmp/cc8RQLXI.s 			page 9
 
 
  341              		@ link register save eliminated.
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  390              	.LFB27:
  129:Src/syscalls.c **** 
  130:Src/syscalls.c **** int _lseek(int file, int ptr, int dir)
-ARM GAS  /tmp/cc4tUEIX.s 			page 10
+ARM GAS  /tmp/cc8RQLXI.s 			page 10
 
 
  131:Src/syscalls.c **** {
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  140:Src/syscalls.c **** 	{
  141:Src/syscalls.c **** 	  *ptr++ = __io_getchar();
  142:Src/syscalls.c **** 	}
-ARM GAS  /tmp/cc4tUEIX.s 			page 11
+ARM GAS  /tmp/cc8RQLXI.s 			page 11
 
 
  143:Src/syscalls.c **** 
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  483 0006 03B0     		add	sp, sp, #12
  484 0008 7047     		bx	lr
  485              		.cfi_endproc
-ARM GAS  /tmp/cc4tUEIX.s 			page 12
+ARM GAS  /tmp/cc8RQLXI.s 			page 12
 
 
  486              	.LFE29:
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  159:Src/syscalls.c **** int _unlink(char *name)
  160:Src/syscalls.c **** {
  535              		.loc 1 160 0
-ARM GAS  /tmp/cc4tUEIX.s 			page 13
+ARM GAS  /tmp/cc8RQLXI.s 			page 13
 
 
  536              		.cfi_startproc
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  582 0002 4042     		rsbs	r0, r0, #0
  583 0004 7047     		bx	lr
  584              		.cfi_endproc
-ARM GAS  /tmp/cc4tUEIX.s 			page 14
+ARM GAS  /tmp/cc8RQLXI.s 			page 14
 
 
  585              	.LFE32:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  178:Src/syscalls.c **** 	errno = EMLINK;
  633              		.loc 1 178 0
  634 0000 1F22     		movs	r2, #31
-ARM GAS  /tmp/cc4tUEIX.s 			page 15
+ARM GAS  /tmp/cc8RQLXI.s 			page 15
 
 
  179:Src/syscalls.c **** 	return -1;
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  679              		.loc 1 186 0
  680              		@ sp needed
  681 000a 7047     		bx	lr
-ARM GAS  /tmp/cc4tUEIX.s 			page 16
+ARM GAS  /tmp/cc8RQLXI.s 			page 16
 
 
  682              	.L45:
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  733 0000 00000000 		.space	4
  734              		.weak	__io_getchar
  735              		.weak	__io_putchar
-ARM GAS  /tmp/cc4tUEIX.s 			page 17
+ARM GAS  /tmp/cc8RQLXI.s 			page 17
 
 
  736              		.text
@@ -977,67 +977,67 @@ ARM GAS  /tmp/cc4tUEIX.s 			page 1
  749              		.file 13 "/home/arthurdent/Programs/gcc-arm-none-eabi-6-2017-q1-update/arm-none-eabi/include/sys/e
  750              		.file 14 "/home/arthurdent/Programs/gcc-arm-none-eabi-6-2017-q1-update/arm-none-eabi/include/sys/u
  751              		.file 15 "/home/arthurdent/Programs/gcc-arm-none-eabi-6-2017-q1-update/arm-none-eabi/include/sys/w
-ARM GAS  /tmp/cc4tUEIX.s 			page 18
+ARM GAS  /tmp/cc8RQLXI.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 syscalls.c
-     /tmp/cc4tUEIX.s:16     .text._sbrk:0000000000000000 $t
-     /tmp/cc4tUEIX.s:23     .text._sbrk:0000000000000000 _sbrk
-     /tmp/cc4tUEIX.s:96     .text._sbrk:0000000000000034 $d
-     /tmp/cc4tUEIX.s:105    .text._gettimeofday:0000000000000000 $t
-     /tmp/cc4tUEIX.s:112    .text._gettimeofday:0000000000000000 _gettimeofday
-     /tmp/cc4tUEIX.s:138    .text.initialise_monitor_handles:0000000000000000 $t
-     /tmp/cc4tUEIX.s:145    .text.initialise_monitor_handles:0000000000000000 initialise_monitor_handles
-     /tmp/cc4tUEIX.s:159    .text._getpid:0000000000000000 $t
-     /tmp/cc4tUEIX.s:166    .text._getpid:0000000000000000 _getpid
-     /tmp/cc4tUEIX.s:181    .text._kill:0000000000000000 $t
-     /tmp/cc4tUEIX.s:188    .text._kill:0000000000000000 _kill
-     /tmp/cc4tUEIX.s:213    .text._kill:000000000000000c $d
-     /tmp/cc4tUEIX.s:218    .text._exit:0000000000000000 $t
-     /tmp/cc4tUEIX.s:225    .text._exit:0000000000000000 _exit
-     /tmp/cc4tUEIX.s:245    .text._exit:0000000000000008 $d
-     /tmp/cc4tUEIX.s:252    .text._write:0000000000000000 $t
-     /tmp/cc4tUEIX.s:259    .text._write:0000000000000000 _write
-     /tmp/cc4tUEIX.s:303    .text._close:0000000000000000 $t
-     /tmp/cc4tUEIX.s:310    .text._close:0000000000000000 _close
-     /tmp/cc4tUEIX.s:328    .text._fstat:0000000000000000 $t
-     /tmp/cc4tUEIX.s:335    .text._fstat:0000000000000000 _fstat
-     /tmp/cc4tUEIX.s:358    .text._isatty:0000000000000000 $t
-     /tmp/cc4tUEIX.s:365    .text._isatty:0000000000000000 _isatty
-     /tmp/cc4tUEIX.s:382    .text._lseek:0000000000000000 $t
-     /tmp/cc4tUEIX.s:389    .text._lseek:0000000000000000 _lseek
-     /tmp/cc4tUEIX.s:406    .text._read:0000000000000000 $t
-     /tmp/cc4tUEIX.s:413    .text._read:0000000000000000 _read
-     /tmp/cc4tUEIX.s:458    .text._open:0000000000000000 $t
-     /tmp/cc4tUEIX.s:465    .text._open:0000000000000000 _open
-     /tmp/cc4tUEIX.s:489    .text._wait:0000000000000000 $t
-     /tmp/cc4tUEIX.s:496    .text._wait:0000000000000000 _wait
-     /tmp/cc4tUEIX.s:521    .text._wait:000000000000000c $d
-     /tmp/cc4tUEIX.s:526    .text._unlink:0000000000000000 $t
-     /tmp/cc4tUEIX.s:533    .text._unlink:0000000000000000 _unlink
-     /tmp/cc4tUEIX.s:558    .text._unlink:000000000000000c $d
-     /tmp/cc4tUEIX.s:563    .text._times:0000000000000000 $t
-     /tmp/cc4tUEIX.s:570    .text._times:0000000000000000 _times
-     /tmp/cc4tUEIX.s:588    .text._stat:0000000000000000 $t
-     /tmp/cc4tUEIX.s:595    .text._stat:0000000000000000 _stat
-     /tmp/cc4tUEIX.s:618    .text._link:0000000000000000 $t
-     /tmp/cc4tUEIX.s:625    .text._link:0000000000000000 _link
-     /tmp/cc4tUEIX.s:650    .text._link:000000000000000c $d
-     /tmp/cc4tUEIX.s:655    .text._fork:0000000000000000 $t
-     /tmp/cc4tUEIX.s:662    .text._fork:0000000000000000 _fork
-     /tmp/cc4tUEIX.s:685    .text._fork:000000000000000c $d
-     /tmp/cc4tUEIX.s:690    .text._execve:0000000000000000 $t
-     /tmp/cc4tUEIX.s:697    .text._execve:0000000000000000 _execve
-     /tmp/cc4tUEIX.s:723    .text._execve:000000000000000c $d
-     /tmp/cc4tUEIX.s:728    .bss.heap_end.5995:0000000000000000 $d
-     /tmp/cc4tUEIX.s:732    .bss.heap_end.5995:0000000000000000 heap_end.5995
+     /tmp/cc8RQLXI.s:16     .text._sbrk:0000000000000000 $t
+     /tmp/cc8RQLXI.s:23     .text._sbrk:0000000000000000 _sbrk
+     /tmp/cc8RQLXI.s:96     .text._sbrk:0000000000000034 $d
+     /tmp/cc8RQLXI.s:105    .text._gettimeofday:0000000000000000 $t
+     /tmp/cc8RQLXI.s:112    .text._gettimeofday:0000000000000000 _gettimeofday
+     /tmp/cc8RQLXI.s:138    .text.initialise_monitor_handles:0000000000000000 $t
+     /tmp/cc8RQLXI.s:145    .text.initialise_monitor_handles:0000000000000000 initialise_monitor_handles
+     /tmp/cc8RQLXI.s:159    .text._getpid:0000000000000000 $t
+     /tmp/cc8RQLXI.s:166    .text._getpid:0000000000000000 _getpid
+     /tmp/cc8RQLXI.s:181    .text._kill:0000000000000000 $t
+     /tmp/cc8RQLXI.s:188    .text._kill:0000000000000000 _kill
+     /tmp/cc8RQLXI.s:213    .text._kill:000000000000000c $d
+     /tmp/cc8RQLXI.s:218    .text._exit:0000000000000000 $t
+     /tmp/cc8RQLXI.s:225    .text._exit:0000000000000000 _exit
+     /tmp/cc8RQLXI.s:245    .text._exit:0000000000000008 $d
+     /tmp/cc8RQLXI.s:252    .text._write:0000000000000000 $t
+     /tmp/cc8RQLXI.s:259    .text._write:0000000000000000 _write
+     /tmp/cc8RQLXI.s:303    .text._close:0000000000000000 $t
+     /tmp/cc8RQLXI.s:310    .text._close:0000000000000000 _close
+     /tmp/cc8RQLXI.s:328    .text._fstat:0000000000000000 $t
+     /tmp/cc8RQLXI.s:335    .text._fstat:0000000000000000 _fstat
+     /tmp/cc8RQLXI.s:358    .text._isatty:0000000000000000 $t
+     /tmp/cc8RQLXI.s:365    .text._isatty:0000000000000000 _isatty
+     /tmp/cc8RQLXI.s:382    .text._lseek:0000000000000000 $t
+     /tmp/cc8RQLXI.s:389    .text._lseek:0000000000000000 _lseek
+     /tmp/cc8RQLXI.s:406    .text._read:0000000000000000 $t
+     /tmp/cc8RQLXI.s:413    .text._read:0000000000000000 _read
+     /tmp/cc8RQLXI.s:458    .text._open:0000000000000000 $t
+     /tmp/cc8RQLXI.s:465    .text._open:0000000000000000 _open
+     /tmp/cc8RQLXI.s:489    .text._wait:0000000000000000 $t
+     /tmp/cc8RQLXI.s:496    .text._wait:0000000000000000 _wait
+     /tmp/cc8RQLXI.s:521    .text._wait:000000000000000c $d
+     /tmp/cc8RQLXI.s:526    .text._unlink:0000000000000000 $t
+     /tmp/cc8RQLXI.s:533    .text._unlink:0000000000000000 _unlink
+     /tmp/cc8RQLXI.s:558    .text._unlink:000000000000000c $d
+     /tmp/cc8RQLXI.s:563    .text._times:0000000000000000 $t
+     /tmp/cc8RQLXI.s:570    .text._times:0000000000000000 _times
+     /tmp/cc8RQLXI.s:588    .text._stat:0000000000000000 $t
+     /tmp/cc8RQLXI.s:595    .text._stat:0000000000000000 _stat
+     /tmp/cc8RQLXI.s:618    .text._link:0000000000000000 $t
+     /tmp/cc8RQLXI.s:625    .text._link:0000000000000000 _link
+     /tmp/cc8RQLXI.s:650    .text._link:000000000000000c $d
+     /tmp/cc8RQLXI.s:655    .text._fork:0000000000000000 $t
+     /tmp/cc8RQLXI.s:662    .text._fork:0000000000000000 _fork
+     /tmp/cc8RQLXI.s:685    .text._fork:000000000000000c $d
+     /tmp/cc8RQLXI.s:690    .text._execve:0000000000000000 $t
+     /tmp/cc8RQLXI.s:697    .text._execve:0000000000000000 _execve
+     /tmp/cc8RQLXI.s:723    .text._execve:000000000000000c $d
+     /tmp/cc8RQLXI.s:728    .bss.heap_end.5995:0000000000000000 $d
+     /tmp/cc8RQLXI.s:732    .bss.heap_end.5995:0000000000000000 heap_end.5995
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
 end
 errno
-ARM GAS  /tmp/cc4tUEIX.s 			page 19
+ARM GAS  /tmp/cc8RQLXI.s 			page 19
 
 
 __io_putchar

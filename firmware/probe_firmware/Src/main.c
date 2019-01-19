@@ -48,6 +48,8 @@
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc;
 
+TIM_HandleTypeDef htim17;
+
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
@@ -85,6 +87,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_ADC_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_TIM17_Init(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -195,7 +198,10 @@ void unsigned_to_buffer(uint16_t input,uint8_t index){
 // }
 
 void select_mux_channel(){
-
+    HAL_GPIO_WritePin(S0_GPIO_Port, S0_Pin,0);
+    HAL_GPIO_WritePin(S1_GPIO_Port, S1_Pin,0);
+    // HAL_GPIO_WritePin(S2_GPIO_Port, S2_Pin,0);
+    HAL_GPIO_WritePin(S3_GPIO_Port, S3_Pin,0);
 }
 
 /* USER CODE END PFP */
@@ -235,6 +241,7 @@ int main(void)
   MX_GPIO_Init();
   MX_ADC_Init();
   MX_USART1_UART_Init();
+  MX_TIM17_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -243,17 +250,20 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   //
   switch_adc_channel(ADC_CHANNEL_0);
+  HAL_ADC_Start(&hadc);
 
   while (1){
 
     //HAL_IWDG_Refresh(&hiwdg);
 
-
-    HAL_ADC_Start(&hadc);
-    while(HAL_ADC_PollForConversion(&hadc, 100000) != HAL_OK);
-    uint16_t current_value = HAL_ADC_GetValue(&hadc);
-    // unsigned_to_buffer(average_value,INDEX_AVERAGE_SALINITY_1);
-    printf("Working!\r\n");
+    TIM17->CR1 |= TIM_CR1_CEN;
+    TIM17->CNT = 0;
+    // HAL_ADC_Start(&hadc);
+    // while(HAL_ADC_PollForConversion(&hadc, 100000) != HAL_OK);
+    uint16_t current_value = (&hadc)->Instance->DR;
+    //unsigned_to_buffer(average_value,INDEX_AVERAGE_SALINITY_1);
+    uint16_t postcapture_value = TIM17->CNT;
+    printf("%i,%i\r\n",current_value,postcapture_value);
     HAL_Delay(100);
     /////////////////////////////I2C STUFF///////////////////////////
 
@@ -343,7 +353,7 @@ static void MX_ADC_Init(void)
   hadc.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   hadc.Init.LowPowerAutoWait = DISABLE;
   hadc.Init.LowPowerAutoPowerOff = DISABLE;
-  hadc.Init.ContinuousConvMode = DISABLE;
+  hadc.Init.ContinuousConvMode = ENABLE;
   hadc.Init.DiscontinuousConvMode = DISABLE;
   hadc.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
@@ -354,36 +364,54 @@ static void MX_ADC_Init(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-    /**Configure for the selected ADC regular channel to be converted.
-    */
-  sConfig.Channel = ADC_CHANNEL_0;
-  sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
-  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
-  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+  //   /**Configure for the selected ADC regular channel to be converted.
+  //   */
+  // sConfig.Channel = ADC_CHANNEL_0;
+  // sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
+  // sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  // if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  // {
+  //   _Error_Handler(__FILE__, __LINE__);
+  // }
+  //
+  //   /**Configure for the selected ADC regular channel to be converted.
+  //   */
+  // sConfig.Channel = ADC_CHANNEL_1;
+  // if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  // {
+  //   _Error_Handler(__FILE__, __LINE__);
+  // }
+  //
+  //   /**Configure for the selected ADC regular channel to be converted.
+  //   */
+  // sConfig.Channel = ADC_CHANNEL_TEMPSENSOR;
+  // if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  // {
+  //   _Error_Handler(__FILE__, __LINE__);
+  // }
+  //
+  //   /**Configure for the selected ADC regular channel to be converted.
+  //   */
+  // sConfig.Channel = ADC_CHANNEL_VREFINT;
+  // if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  // {
+  //   _Error_Handler(__FILE__, __LINE__);
+  // }
 
-    /**Configure for the selected ADC regular channel to be converted.
-    */
-  sConfig.Channel = ADC_CHANNEL_1;
-  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+}
 
-    /**Configure for the selected ADC regular channel to be converted.
-    */
-  sConfig.Channel = ADC_CHANNEL_TEMPSENSOR;
-  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+/* TIM17 init function */
+static void MX_TIM17_Init(void)
+{
 
-    /**Configure for the selected ADC regular channel to be converted.
-    */
-  sConfig.Channel = ADC_CHANNEL_VREFINT;
-  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  htim17.Instance = TIM17;
+  htim17.Init.Prescaler = 0;
+  htim17.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim17.Init.Period = 65535;
+  htim17.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim17.Init.RepetitionCounter = 0;
+  htim17.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim17) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }

@@ -43,7 +43,7 @@
 extern ADC_HandleTypeDef hadc;
 
 /******************************************************************************/
-/*            Cortex-M0 Processor Interruption and Exception Handlers         */
+/*            Cortex-M0 Processor Interruption and Exception Handlers         */ 
 /******************************************************************************/
 
 /**
@@ -131,14 +131,11 @@ void SysTick_Handler(void)
 void ADC1_IRQHandler(void)
 {
   /* USER CODE BEGIN ADC1_IRQn 0 */
-
+//
   /* USER CODE END ADC1_IRQn 0 */
   HAL_ADC_IRQHandler(&hadc);
-  HAL_GPIO_WritePin(S2_GPIO_Port, S2_Pin,1);
-  HAL_GPIO_WritePin(S2_GPIO_Port, S2_Pin,0);
-
   /* USER CODE BEGIN ADC1_IRQn 1 */
-
+//
   /* USER CODE END ADC1_IRQn 1 */
 }
 

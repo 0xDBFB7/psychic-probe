@@ -207,6 +207,16 @@ void select_mux_channel(){
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
+/**
+* @brief This function handles ADC interrupt.
+*/
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
+{
+    // HAL_ADC_GetValue(AdcHandle);
+    S2_GPIO_Port->BRR = (uint32_t)S2_Pin;
+    S2_GPIO_Port->BSRR = (uint32_t)S2_Pin;
+
+}
 
 /* USER CODE END 0 */
 
@@ -250,21 +260,23 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   //
   switch_adc_channel(ADC_CHANNEL_0);
-  HAL_ADC_Start(&hadc);
+  HAL_NVIC_SetPriority(ADC1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(ADC1_IRQn);
+  HAL_ADC_Start_IT(&hadc);
 
   while (1){
 
     //HAL_IWDG_Refresh(&hiwdg);
 
-    TIM17->CR1 |= TIM_CR1_CEN;
-    TIM17->CNT = 0;
-    // HAL_ADC_Start(&hadc);
-    // while(HAL_ADC_PollForConversion(&hadc, 100000) != HAL_OK);
-    uint16_t current_value = (&hadc)->Instance->DR;
-    //unsigned_to_buffer(average_value,INDEX_AVERAGE_SALINITY_1);
-    uint16_t postcapture_value = TIM17->CNT;
-    printf("%i,%i\r\n",current_value,postcapture_value);
-    HAL_Delay(100);
+    // TIM17->CR1 |= TIM_CR1_CEN;
+    // TIM17->CNT = 0;
+    // // HAL_ADC_Start(&hadc);
+    // // while(HAL_ADC_PollForConversion(&hadc, 100000) != HAL_OK);
+    // uint16_t current_value = (&hadc)->Instance->DR;
+    // //unsigned_to_buffer(average_value,INDEX_AVERAGE_SALINITY_1);
+    // uint16_t postcapture_value = TIM17->CNT;
+    // printf("%i,%i\r\n",current_value,postcapture_value);
+    // HAL_Delay(100);
     /////////////////////////////I2C STUFF///////////////////////////
 
     //tx_buffer[INDEX_CHECKSUM] = chksum8(i2c_tx_buffer,NUMBER_OF_VALUES);
@@ -357,46 +369,30 @@ static void MX_ADC_Init(void)
   hadc.Init.DiscontinuousConvMode = DISABLE;
   hadc.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc.Init.DMAContinuousRequests = DISABLE;
+  hadc.Init.DMAContinuousRequests = ENABLE;
   hadc.Init.Overrun = ADC_OVR_DATA_PRESERVED;
   if (HAL_ADC_Init(&hadc) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
 
-  //   /**Configure for the selected ADC regular channel to be converted.
-  //   */
-  // sConfig.Channel = ADC_CHANNEL_0;
-  // sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
-  // sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
-  // if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
-  // {
-  //   _Error_Handler(__FILE__, __LINE__);
-  // }
-  //
-  //   /**Configure for the selected ADC regular channel to be converted.
-  //   */
-  // sConfig.Channel = ADC_CHANNEL_1;
-  // if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
-  // {
-  //   _Error_Handler(__FILE__, __LINE__);
-  // }
-  //
-  //   /**Configure for the selected ADC regular channel to be converted.
-  //   */
-  // sConfig.Channel = ADC_CHANNEL_TEMPSENSOR;
-  // if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
-  // {
-  //   _Error_Handler(__FILE__, __LINE__);
-  // }
-  //
-  //   /**Configure for the selected ADC regular channel to be converted.
-  //   */
-  // sConfig.Channel = ADC_CHANNEL_VREFINT;
-  // if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
-  // {
-  //   _Error_Handler(__FILE__, __LINE__);
-  // }
+    /**Configure for the selected ADC regular channel to be converted.
+    */
+  sConfig.Channel = ADC_CHANNEL_0;
+  sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
+  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+    /**Configure for the selected ADC regular channel to be converted.
+    */
+  sConfig.Channel = ADC_CHANNEL_1;
+  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
 
 }
 

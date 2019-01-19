@@ -94,18 +94,18 @@ void wait_cycles(uint32_t cycles){ //0.19 us per cycle
   }
 }
 
-// void switch_adc_channel(uint32_t channel){
-//   HAL_ADC_DeInit(&hadc);
-//   MX_ADC_Init();
-//   ADC_ChannelConfTypeDef sConfig;
-//   sConfig.Channel = channel;
-//   sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
-//   sConfig.SamplingTime = ADC_SAMPLETIME_41CYCLES_5;
-//   if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
-//   {
-//     _Error_Handler(__FILE__, __LINE__);
-//   }
-// }
+void switch_adc_channel(uint32_t channel){
+  HAL_ADC_DeInit(&hadc);
+  MX_ADC_Init();
+  ADC_ChannelConfTypeDef sConfig;
+  sConfig.Channel = channel;
+  sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
+  sConfig.SamplingTime = ADC_SAMPLETIME_41CYCLES_5;
+  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+}
 //
 // //on the other side
 void unsigned_to_buffer(uint16_t input,uint8_t index){
@@ -242,17 +242,19 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   //
+  switch_adc_channel(ADC_CHANNEL_0);
+
   while (1){
 
     //HAL_IWDG_Refresh(&hiwdg);
-    ////////////////READ SECONDARY WIRE////////////////////
 
 
-    // switch_adc_channel(ADC_CHANNEL_0);
-    // average_ADC_value();
+    HAL_ADC_Start(&hadc);
+    while(HAL_ADC_PollForConversion(&hadc, 100000) != HAL_OK);
+    uint16_t current_value = HAL_ADC_GetValue(&hadc);
     // unsigned_to_buffer(average_value,INDEX_AVERAGE_SALINITY_1);
     printf("Working!\r\n");
-
+    HAL_Delay(100);
     /////////////////////////////I2C STUFF///////////////////////////
 
     //tx_buffer[INDEX_CHECKSUM] = chksum8(i2c_tx_buffer,NUMBER_OF_VALUES);
@@ -280,15 +282,14 @@ void SystemClock_Config(void)
 
     /**Initializes the CPU, AHB and APB busses clocks
     */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSI14;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI14|RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSI14State = RCC_HSI14_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
   RCC_OscInitStruct.HSI14CalibrationValue = 16;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL12;
-  RCC_OscInitStruct.PLL.PREDIV = RCC_PREDIV_DIV1;
+  RCC_OscInitStruct.PLL.PREDIV = RCC_PREDIV_DIV2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
@@ -402,7 +403,8 @@ static void MX_USART1_UART_Init(void)
   huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
   huart1.Init.OverSampling = UART_OVERSAMPLING_16;
   huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_TXINVERT_INIT;
+  huart1.AdvancedInit.TxPinLevelInvert = UART_ADVFEATURE_TXINV_ENABLE;
   if (HAL_HalfDuplex_Init(&huart1) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);

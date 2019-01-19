@@ -134,5 +134,14 @@ Using some boilerplate code from the capacitive sensor.
 
 Retaining the ADC DMA code - interestingly, neither project has any DMA entries listed in STM32Cube. I guess I've forgotten how all that worked.
 
-The optocoupler refused to function when powered by a CH340 3v3 rail. Interesting!
+The optocoupler refused to function when powered by a CH340's 3v3 rail. Interesting! Taking power from the 5v bus works fine:
 
+![DS1Z_QuickPrint17](../media/DS1Z_QuickPrint17.png)
+
+Channel 1 and 2 are input and output respectively. The trailing edge of the signal is fascinating. I guess the UART pin goes high-z after it's done transmitting? I think you can also see the "knee" of the LED current curve. Very cool.
+
+The VFD on my multimeter seems to still emit IR even when the standby button is pressed. 
+
+The board consumes around 30 milliamps.
+
+One of my CH340G boards was toast, hindering troubleshooting efforts. 

@@ -237,24 +237,24 @@ int main(void)
     // //HAL_IWDG_Refresh(&hiwdg);
     //collect one buffer's worth of dat
 
-
+    TIM17->CNT = 0;
     HAL_ADC_Start(&hadc);
+    printf("%i\r\n",TIM17->CNT);
+
     for(int channel_number = 0; channel_number < CHANNELS; channel_number++){
       select_mux_channel(channel_number);
 
       //x1
-      TIM17->CNT = 0;
 
-      while(HAL_IS_BIT_CLR(((&hadc)->Instance->ISR), (ADC_FLAG_EOC | ADC_FLAG_EOS)));
+      while(HAL_IS_BIT_CLR(((&hadc)->Instance->ISR), ADC_FLAG_EOS));
       channel_values[channel_number][0] = (&hadc)->Instance->DR;
 
       //x10
-      while(HAL_IS_BIT_CLR(((&hadc)->Instance->ISR), (ADC_FLAG_EOC | ADC_FLAG_EOS)));
+      while(HAL_IS_BIT_CLR(((&hadc)->Instance->ISR), ADC_FLAG_EOC));
       channel_values[channel_number][1] = (&hadc)->Instance->DR;
-      printf("%i\r\n",TIM17->CNT);
-
       //this section must not take more than ~15 clock cycles.
     }
+    
     HAL_ADC_Stop(&hadc);
 
 

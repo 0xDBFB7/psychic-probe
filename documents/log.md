@@ -194,11 +194,15 @@ I contemplated putting most of the logic in the ADC interrupt and double bufferi
 
 The ADC interrupt breaks at ADC_SAMPLETIME_1CYCLE_5 for some reason. 
 
-| Function                          | Time               |
-| --------------------------------- | ------------------ |
-| select_mux_channel(0) -Os         | 65 cycles, 1.35 us |
-| select_mux_channel(0) or (16) -O3 | 9 cycles, 0.187 us |
-| Complete buffer fill, 16 channels |                    |
+Timing with TIM17.
+
+| Function                                    | Time               |
+| ------------------------------------------- | ------------------ |
+| select_mux_channel(0), -Os                  | 65 cycles, 1.35 us |
+| select_mux_channel(0) or (16), -O3          | 9 cycles, 0.187 us |
+|                                             |                    |
+| One buffer cycle,mux+x1+x10, -O3            |                    |
+| Complete buffer fill, 16 channels, mux, -O3 | 1605 to 1699       |
 
 We have ~30 cycles to work with before 
 

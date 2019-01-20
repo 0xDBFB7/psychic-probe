@@ -82,8 +82,8 @@ return ch;
 #define TERMINATOR_INDEX_1 (CHANNELS*2)+1
 #define TERMINATOR_INDEX_2 (CHANNELS*2)+2
 
-uint8_t tx_buffer[CHANNELS];
-uint16_t channel_values[2][CHANNELS][2];//buffer1/2, channel number, ADC input x1/x10
+uint8_t tx_buffer[PACKET_BYTE_COUNT];
+uint16_t channel_values[CHANNELS][2];//buffer1/2, channel number, ADC input x1/x10
 float channel_calibration_factors[16];
 
 uint8_t current_ADC_channel = 0; //0: x1, 1: x10
@@ -119,7 +119,7 @@ void switch_adc_channel(uint32_t channel){
   ADC_ChannelConfTypeDef sConfig;
   sConfig.Channel = channel;
   sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
-  sConfig.SamplingTime = ADC_SAMPLETIME_41CYCLES_5;
+  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
   if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
@@ -154,9 +154,9 @@ void faster_pin_write(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinS
 
 
 void select_mux_channel(uint8_t address){
-    //ah darn! Why did I make the channels non-zero indexed on the silkscreen?
+    //ah darn! Why didn't I make the channels zero-indexed on the silkscreen?
     //That was tremendously stupid!
-    //Let's make the convention that all channel numbers are zero-indexed until they're graphed.
+    //Let's let the convention be that all channel numbers are zero-indexed until they're graphed.
 
     faster_pin_write(S0_GPIO_Port, S0_Pin,(address >> 0) & 1U);
     faster_pin_write(S1_GPIO_Port, S1_Pin,(address >> 1) & 1U);
@@ -172,13 +172,14 @@ void select_mux_channel(uint8_t address){
 */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
 {
-    channel_values[current_input_buffer][current_input_channel][current_ADC_channel] = (&hadc)->Instance->DR;
-    if(current_ADC_channel == 1){
-      current_input_channel++;
-    }
-    current_ADC_channel = !current_input_channel;
+    // channel_values[current_input_channel][current_ADC_channel] = (&hadc)->Instance->DR;
+    // if(current_ADC_channel == 1 && current_input_channel < CHANNELS){
+    //   current_input_channel++;
+    // }
+    // current_ADC_channel = !current_input_channel;
+    //select_mux_channel(current_input_channel);
 }
-
+//
 
 /* USER CODE END 0 */
 
@@ -220,26 +221,47 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   //
-  // switch_adc_channel(ADC_CHANNEL_0);
-  HAL_NVIC_SetPriority(ADC1_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(ADC1_IRQn);
-  select_mux_channel(current_input_channel);
+  //switch_adc_channel(ADC_CHANNEL_0);
+  //HAL_ADC_Start(&hadc);
+  // HAL_NVIC_SetPriority(ADC1_IRQn, 0, 0);
+  // HAL_NVIC_EnableIRQ(ADC1_IRQn);
   //HAL_ADC_Start_IT(&hadc);
-  HAL_ADC_Start(&hadc);
-  //TIM17->CR1 |= TIM_CR1_CEN;
+
+  // switch_adc_channel(ADC_CHANNEL_0);
+  //HAL_NVIC_SetPriority(ADC1_IRQn, 0, 0);
+  //HAL_NVIC_EnableIRQ(ADC1_IRQn);
+  //select_mux_channel(current_input_channel);
+  TIM17->CR1 |= TIM_CR1_CEN;
   while (1){
 
     // //HAL_IWDG_Refresh(&hiwdg);
-    // TIM17->CNT = 0;
-    for(int channel_number = 0; channel_number < CHANNELS; channel_number++){
-      select_mux_channel(channel_number);
-      // //this section must not take more than ~15 clock cycles.
-      // while(HAL_ADC_PollForConversion(&hadc, 100000) != HAL_OK);
-      // uint16_t current_value = (&hadc)->Instance->DR;
-    }
+    TIM17->CNT = 0;
+    //collect one buffer's worth of data
+
+    select_mux_channel(0);
+    printf("%i\r\n",TIM17->CNT);
+    //
+    // select_mux_channel(0);
+    // HAL_ADC_Start(&hadc);
+    // for(int channel_number = 0; channel_number < CHANNELS; channel_number++){
+    //   select_mux_channel(channel_number);
+    //   channel_values[current_input_channel][current_ADC_channel] = (&hadc)->Instance->DR;
+    //   if(current_ADC_channel == 1){
+    //     current_input_channel++;
+    //   }
+    //   current_ADC_channel = !current_input_channel;
+    //   //this section must not take more than ~15 clock cycles.
+    //   while(HAL_ADC_PollForConversion(&hadc, 100000) != HAL_OK);
+    //   uint16_t current_value = (&hadc)->Instance->DR;
+    // }
+    // HAL_ADC_Stop(&hadc);
+
     // tx_buffer[INDEX_CHECKSUM] = chksum8(tx_buffer,NUMBER_OF_VALUES);
     // //while(HAL_UART_Transmit_IT(&huart1, (uint8_t *)&tx_buffer, PACKET_BYTE_COUNT) == HAL_BUSY);
     // printf(TIM17->CNT);
+    //HAL_ADC_Stop_IT(&hadc);
+    //printf("D\r\n");
+    //while(HAL_UART_Transmit(&huart1, (uint8_t *)&tx_buffer, PACKET_BYTE_COUNT) == HAL_BUSY);
 
   /* USER CODE END WHILE */
 

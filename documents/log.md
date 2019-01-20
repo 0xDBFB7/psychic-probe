@@ -190,4 +190,13 @@ On the other hand, any changes to the calibration would require a JTAG programme
 
 If I put the scale indicator on the second-to-last bit of the high byte, I can make the terminator FFFFFFFF without fear of collision, since the high byte of each channel can never be all 1s.
 
-I contemplated putting most of the logic in the ADC interrupt and double buffering; however, a buffer copy operation would take at least 32 cycles, which is a little close for comfort. 
+I contemplated putting most of the logic in the ADC interrupt and double buffering.
+
+The ADC interrupt breaks at ADC_SAMPLETIME_1CYCLE_5 for some reason. 
+
+| Function                 | Time              |
+| ------------------------ | ----------------- |
+| select_mux_channel() -Os | 1.35 microseconds |
+| select_mux_channel() -O3 | 0.187 us          |
+|                          |                   |
+

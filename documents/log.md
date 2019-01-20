@@ -172,7 +172,7 @@ Now let's discuss timestamping. If I know the sample rate precisely enough I can
 
 Oh hey! I can just let the master computer do all the timestamping! This offloads even more processing onto the faster system. 
 
-2 megabaud / (16 channels * 2 bytes per channel + checksum + 1 byte terminator)  = 58.823 khz - very reasonable. I could glean even more performance if I didn't abandon the extra 4 bytes per channel (16-12), but I really couldn't be bothered.
+2 megabaud / (16 channels * 2 bytes per channel + checksum + 1 byte terminator) / 10 cycles per char  = 5.8823 khz - very reasonable. I could probably glean even more performance if I didn't abandon the extra 4 bytes per channel (16-12), but I really couldn't be bothered.
 
 The top bit of each channel can be used to indicate the scale factor.
 
@@ -190,22 +190,21 @@ On the other hand, any changes to the calibration would require a JTAG programme
 
 If I put the scale indicator on the second-to-last bit of the high byte, I can make the terminator FFFFFFFF without fear of collision, since the high byte of each channel can never be all 1s.
 
-I contemplated putting most of the logic in the ADC interrupt and double buffering.
+I contemplated putting most of the logic in the ADC interrupt and using double buffering - however, I encountered issues with the ADC interrupt at high sample rates, so I abandoned this idea.
 
 The ADC interrupt breaks at ADC_SAMPLETIME_1CYCLE_5 for some reason. 
 
 Timing with TIM17.
 
-| Function                                    | Time               |
-| ------------------------------------------- | ------------------ |
-| select_mux_channel(0), -Os                  | 65 cycles, 1.35 us |
-| select_mux_channel(0) or (16), -O3          | 9 cycles, 0.187 us |
-|                                             |                    |
-| One buffer cycle,mux+x1+x10, -O3            |                    |
-| Complete buffer fill, 16 channels, mux, -O3 | 1605 to 1699       |
+| Function                                       | Time                                       |
+| ---------------------------------------------- | ------------------------------------------ |
+| select_mux_channel(0), -Os                     | 65 cycles, 1.35 us                         |
+| select_mux_channel(0) or (16), -O3             | 9 cycles, 0.187 us                         |
+| HAL_ADC_Start()                                | 819 cycles,                                |
+|                                                |                                            |
+| One buffer cycle,mux+x1+x10, -O3               |                                            |
+| Complete buffer fill, 16 channels, mux, -O3    | 1522 to 1626, 31 us                        |
+| HAL_UART_Transmit(), 2 megabaud, -O3, 37 chars | 9076 cycles, 189 us (242 cycles per char!) |
 
 We have ~30 cycles to work with before 
 
-
-
-Almost always takes 1358, but sometimes takes 1437.

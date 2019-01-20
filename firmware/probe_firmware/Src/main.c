@@ -72,17 +72,21 @@ return ch;
 
 
 #define CHANNELS 16
-#define ID 1 //must be < 256 or else line termination will break
+#define ID 1 //must be < 256 and > 0 or else line termination will break
             // A maximum of 4080 channels!
+
+#define SCALE_THRESHOLD 150
 
 /////////////////////////////////////////////////
 //Board calibration factors
 /////////////////////////////////////////////////
-#define PACKET_BYTE_COUNT (CHANNELS*2)+1+1+2 //channels + checksum + id + terminator
-#define TERMINATOR_INDEX_1 (CHANNELS*2)+1
-#define TERMINATOR_INDEX_2 (CHANNELS*2)+2
-
-uint8_t tx_buffer[PACKET_BYTE_COUNT];
+#define PACKET_LENGTH (CHANNELS*2)+1+1+4 //channels + checksum + id + terminator
+#define ID_INDEX (CHANNELS*2)+1
+#define CHECKSUM_INDEX ID_INDEX+1
+#define TERMINATOR_INDEX_1 CHECKSUM_INDEX+1
+#define TERMINATOR_INDEX_2 CHECKSUM_INDEX+2
+#define TERMINATOR_INDEX_3 CHECKSUM_INDEX+3
+uint8_t tx_buffer[PACKET_LENGTH];
 uint16_t channel_values[CHANNELS][2];//buffer1/2, channel number, ADC input x1/x10
 float channel_calibration_factors[16];
 
@@ -218,6 +222,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   //
@@ -231,36 +236,65 @@ int main(void)
   //HAL_NVIC_SetPriority(ADC1_IRQn, 0, 0);
   //HAL_NVIC_EnableIRQ(ADC1_IRQn);
   //select_mux_channel(current_input_channel);
+  HAL_ADC_Start(&hadc);
   TIM17->CR1 |= TIM_CR1_CEN;
+
   while (1){
 
     // //HAL_IWDG_Refresh(&hiwdg);
-    //collect one buffer's worth of dat
 
-    TIM17->CNT = 0;
-    HAL_ADC_Start(&hadc);
-    printf("%i\r\n",TIM17->CNT);
+    for(int i = 0; i < 1 ; i++){
+      for(int t = 0; t < PACKET_LENGTH; t++){
+        tx_buffer[t] = 0;
+      }
 
-    for(int channel_number = 0; channel_number < CHANNELS; channel_number++){
-      select_mux_channel(channel_number);
+      for(int channel_number = 0; channel_number < CHANNELS; channel_number++){
+        //this section must not take more than ~30 clock cycles.
+        select_mux_channel(channel_number);
 
-      //x1
+        //x1
+        while(HAL_IS_BIT_CLR(((&hadc)->Instance->ISR), ADC_FLAG_EOS));
+        //EOS = End of sample
+        channel_values[channel_number][0] = (&hadc)->Instance->DR;
 
-      while(HAL_IS_BIT_CLR(((&hadc)->Instance->ISR), ADC_FLAG_EOS));
-      channel_values[channel_number][0] = (&hadc)->Instance->DR;
+        //x10
+        while(HAL_IS_BIT_CLR(((&hadc)->Instance->ISR), ADC_FLAG_EOC));
+        //EOC = End of conversion sequence
+        channel_values[channel_number][1] = (&hadc)->Instance->DR;
+      }
 
-      //x10
-      while(HAL_IS_BIT_CLR(((&hadc)->Instance->ISR), ADC_FLAG_EOC));
-      channel_values[channel_number][1] = (&hadc)->Instance->DR;
-      //this section must not take more than ~15 clock cycles.
+      //
+      // //HAL_ADC_Stop(&hadc);
+      for(int channel_number = 0; channel_number < CHANNELS; channel_number++){
+        //threshold x1 to check if we need to switch to x10
+        if(channel_values[channel_number][0] > SCALE_THRESHOLD || channel_values[channel_number][0] < (4096-SCALE_THRESHOLD)){
+          unsigned_to_buffer(channel_values[channel_number][0],channel_number*2);
+        }
+        else{
+          unsigned_to_buffer(channel_values[channel_number][1],channel_number*2);
+          //set the 7th bit of the high byte to 1.
+          tx_buffer[(channel_number*2)+1] |= 1UL << 6;
+        }
+      }
+
+      tx_buffer[CHECKSUM_INDEX] = chksum8(tx_buffer,CHECKSUM_INDEX);
+      tx_buffer[TERMINATOR_INDEX_1] = 0xff;
+      tx_buffer[TERMINATOR_INDEX_2] = 0x00;
+      tx_buffer[TERMINATOR_INDEX_3] = 0xff;
+      //wait for previous transmission to complete, then TX
+      // TIM17->CNT = 0;
+
+      //debug messages
+      // for(int i =0 ; i < PACKET_LENGTH; i++){
+      //   printf("%i,",tx_buffer[i]);
+      // }
+      // printf("\r\n");
+
+      HAL_UART_Transmit(&huart1, (uint8_t *)&tx_buffer,PACKET_LENGTH,100);
+      // printf("\r\n%i\r\n",TIM17->CNT);
     }
-    
-    HAL_ADC_Stop(&hadc);
-
-
 
     // tx_buffer[INDEX_CHECKSUM] = chksum8(tx_buffer,NUMBER_OF_VALUES);
-    // //while(HAL_UART_Transmit_IT(&huart1, (uint8_t *)&tx_buffer, PACKET_BYTE_COUNT) == HAL_BUSY);
     // printf(TIM17->CNT);
     //HAL_ADC_Stop_IT(&hadc);
     //printf("D\r\n");
@@ -355,7 +389,7 @@ static void MX_ADC_Init(void)
   hadc.Init.DiscontinuousConvMode = DISABLE;
   hadc.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc.Init.DMAContinuousRequests = ENABLE;
+  hadc.Init.DMAContinuousRequests = DISABLE;
   hadc.Init.Overrun = ADC_OVR_DATA_PRESERVED;
   if (HAL_ADC_Init(&hadc) != HAL_OK)
   {
@@ -405,7 +439,7 @@ static void MX_USART1_UART_Init(void)
 {
 
   huart1.Instance = USART1;
-  huart1.Init.BaudRate = 2000000;
+  huart1.Init.BaudRate = 3000000;
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;

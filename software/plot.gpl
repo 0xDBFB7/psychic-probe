@@ -1,0 +1,2 @@
+set datafile separator ","
+plot 'data.csv' using 0:1

@@ -145,3 +145,49 @@ The VFD on my multimeter seems to still emit IR even when the standby button is 
 The board consumes around 30 milliamps.
 
 One of my CH340G boards was toast, hindering troubleshooting efforts. 
+
+<hr>
+
+The x10 side has a about 0.15v of noise before it's shifted. That should be okay?
+
+<hr>
+
+Enabling the "highlight" option on both pcbnew and eeschema allows cross-probing of schematic and board.
+
+Note about ADC impedance
+
+I made the gain of the offset amplifiers twice as high as it should be.
+
+Mention having a spare pin is useful for timing
+
+```
+stty -F /dev/ttyUSB0 2000000
+```
+
+Holy crap! This thing has *zero* difficulty hitting 2 megabaud. I'm not seeing any corruption of any sort.
+
+<hr>
+
+Now let's discuss timestamping. If I know the sample rate precisely enough I can just send a row count.
+
+Oh hey! I can just let the master computer do all the timestamping! This offloads even more processing onto the faster system. 
+
+2 megabaud / (16 channels * 2 bytes per channel + checksum + 1 byte terminator)  = 58.823 khz - very reasonable. I could glean even more performance if I didn't abandon the extra 4 bytes per channel (16-12), but I really couldn't be bothered.
+
+The top bit of each channel can be used to indicate the scale factor.
+
+This is becoming a regular occurrence
+
+Design goals:
+
+- cheap, so that I'm not hugely concerned if it explodes
+- only requires a day or two to design and program - I'm going to university, so I don't have copious free time at the moment.
+
+
+
+It would convenient for calibration data to reside on the probe itself.
+On the other hand, any changes to the calibration would require a JTAG programmer.
+
+If I put the scale indicator on the second-to-last bit of the high byte, I can make the terminator FFFFFFFF without fear of collision, since the high byte of each channel can never be all 1s.
+
+I contemplated putting most of the logic in the ADC interrupt and double buffering; however, a buffer copy operation would take at least 32 cycles, which is a little close for comfort. 

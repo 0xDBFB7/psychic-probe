@@ -61,20 +61,36 @@ UART_HandleTypeDef huart1;
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
 
-
 PUTCHAR_PROTOTYPE
 {
 HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
 
 return ch;
 }
+/////////////////////////////////////////////////
+//Settings
 
-volatile uint16_t wire_1_raw;
-volatile uint16_t wire_2_raw;
 
-#define NUMBER_OF_VALUES 16
+#define CHANNELS 16
+#define ID 1 //must be < 256 or else line termination will break
+            // A maximum of 4080 channels!
 
-uint8_t tx_buffer[NUMBER_OF_VALUES];
+/////////////////////////////////////////////////
+//Board calibration factors
+/////////////////////////////////////////////////
+#define PACKET_BYTE_COUNT (CHANNELS*2)+1+1+2 //channels + checksum + id + terminator
+#define TERMINATOR_INDEX_1 (CHANNELS*2)+1
+#define TERMINATOR_INDEX_2 (CHANNELS*2)+2
+
+uint8_t tx_buffer[CHANNELS];
+uint16_t channel_values[2][CHANNELS][2];//buffer1/2, channel number, ADC input x1/x10
+float channel_calibration_factors[16];
+
+uint8_t current_ADC_channel = 0; //0: x1, 1: x10
+uint8_t current_input_buffer = 0;
+uint8_t current_input_channel = 0;
+uint8_t print_complete = 0;
+uint8_t adc_complete = 0;
 
 /////////////////////////////////////////////////
 
@@ -115,93 +131,37 @@ void unsigned_to_buffer(uint16_t input,uint8_t index){
   tx_buffer[index] = input & 0xff;
   tx_buffer[index+1] = (input >> 8);
 }
-//
-// uint8_t chksum8(const uint8_t *buff, size_t len){
-//     unsigned int sum;
-//     for ( sum = 0 ; len != 0 ; len-- )
-//         sum += *(buff++);
-//     return (uint8_t)sum;
-// }
-//
-// void pulse_sensors(){
-//   HAL_GPIO_WritePin(CAP_DRIVE_GPIO_Port, CAP_DRIVE_Pin,0);
-//   HAL_Delay(1);
-//   HAL_GPIO_WritePin(CAP_DRIVE_GPIO_Port, CAP_DRIVE_Pin,1);
-// }
-//
-// void ground_electrode(){
-//   GPIO_InitTypeDef GPIO_InitStruct;
-//   HAL_GPIO_WritePin(GPIOA, SAL_DRIVE_Pin, GPIO_PIN_RESET);
-//   GPIO_InitStruct.Pin = ELECTRODE_Pin;
-//   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-//   GPIO_InitStruct.Pull = GPIO_NOPULL;
-//   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-//   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-//   wait_cycles(10);
-// }
-//
-// void float_electrode(){
-//   GPIO_InitTypeDef GPIO_InitStruct;
-//   GPIO_InitStruct.Pin = ELECTRODE_Pin;
-//   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-//   GPIO_InitStruct.Pull = GPIO_NOPULL;
-//   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-//   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-//   wait_cycles(10);
-// }
-//
-// void setup_salinity(){
-//   GPIO_InitTypeDef GPIO_InitStruct;
-//   HAL_GPIO_WritePin(GPIOA, SAL_DRIVE_Pin, GPIO_PIN_SET);
-//   GPIO_InitStruct.Pin = SAL_DRIVE_Pin;
-//   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-//   GPIO_InitStruct.Pull = GPIO_NOPULL;
-//   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-//   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-//   wait_cycles(10);
-// }
-//
-// void float_salinity(){
-//   GPIO_InitTypeDef GPIO_InitStruct;
-//   GPIO_InitStruct.Pin = SAL_DRIVE_Pin;
-//   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-//   GPIO_InitStruct.Pull = GPIO_NOPULL;
-//   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-//   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-//   wait_cycles(10);
-// }
-//
-//
-// void average_timer_value(){
-//   average_value = 0;
-//   current_value = 0;
-//   for(int i = 0;i<WIRE_AVERAGES;i++){
-//     pulse_sensors();
-//     TIM3->CNT = 0;
-//     HAL_Delay(1);
-//     current_value = TIM3->CNT;
-//     average_value+=current_value;
-//   }
-//   average_value /= WIRE_AVERAGES;
-// }
-//
-// void average_ADC_value(){
-//   average_value = 0;
-//   current_value = 0;
-//   for(int i = 0;i<WIRE_AVERAGES;i++){
-//     HAL_ADC_Start(&hadc);
-//     while(HAL_ADC_PollForConversion(&hadc, 100000) != HAL_OK);
-//     current_value = HAL_ADC_GetValue(&hadc);
-//     average_value+=current_value;
-//   }
-//   average_value /= SALINITY_AVERAGES;
-// }
 
-void select_mux_channel(){
-    HAL_GPIO_WritePin(S0_GPIO_Port, S0_Pin,0);
-    HAL_GPIO_WritePin(S1_GPIO_Port, S1_Pin,0);
-    // HAL_GPIO_WritePin(S2_GPIO_Port, S2_Pin,0);
-    HAL_GPIO_WritePin(S3_GPIO_Port, S3_Pin,0);
+uint8_t chksum8(const uint8_t *buff, size_t len){
+    unsigned int sum;
+    for ( sum = 0 ; len != 0 ; len-- )
+        sum += *(buff++);
+    return (uint8_t)sum;
+}
+
+void faster_pin_write(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState)
+{
+
+  if (PinState != GPIO_PIN_RESET)
+  {
+    GPIOx->BSRR = (uint32_t)GPIO_Pin;
+  }
+  else
+  {
+    GPIOx->BRR = (uint32_t)GPIO_Pin;
+  }
+}
+
+
+void select_mux_channel(uint8_t address){
+    //ah darn! Why did I make the channels non-zero indexed on the silkscreen?
+    //That was tremendously stupid!
+    //Let's make the convention that all channel numbers are zero-indexed until they're graphed.
+
+    faster_pin_write(S0_GPIO_Port, S0_Pin,(address >> 0) & 1U);
+    faster_pin_write(S1_GPIO_Port, S1_Pin,(address >> 1) & 1U);
+    faster_pin_write(S2_GPIO_Port, S2_Pin,(address >> 2) & 1U);
+    faster_pin_write(S3_GPIO_Port, S3_Pin,(address >> 3) & 1U);
 }
 
 /* USER CODE END PFP */
@@ -212,11 +172,13 @@ void select_mux_channel(){
 */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
 {
-    // HAL_ADC_GetValue(AdcHandle);
-    S2_GPIO_Port->BRR = (uint32_t)S2_Pin;
-    S2_GPIO_Port->BSRR = (uint32_t)S2_Pin;
-
+    channel_values[current_input_buffer][current_input_channel][current_ADC_channel] = (&hadc)->Instance->DR;
+    if(current_ADC_channel == 1){
+      current_input_channel++;
+    }
+    current_ADC_channel = !current_input_channel;
 }
+
 
 /* USER CODE END 0 */
 
@@ -255,31 +217,30 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
-
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   //
-  switch_adc_channel(ADC_CHANNEL_0);
+  // switch_adc_channel(ADC_CHANNEL_0);
   HAL_NVIC_SetPriority(ADC1_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(ADC1_IRQn);
-  HAL_ADC_Start_IT(&hadc);
-
+  select_mux_channel(current_input_channel);
+  //HAL_ADC_Start_IT(&hadc);
+  HAL_ADC_Start(&hadc);
+  //TIM17->CR1 |= TIM_CR1_CEN;
   while (1){
 
-    //HAL_IWDG_Refresh(&hiwdg);
-
-    // TIM17->CR1 |= TIM_CR1_CEN;
+    // //HAL_IWDG_Refresh(&hiwdg);
     // TIM17->CNT = 0;
-    // // HAL_ADC_Start(&hadc);
-    // // while(HAL_ADC_PollForConversion(&hadc, 100000) != HAL_OK);
-    // uint16_t current_value = (&hadc)->Instance->DR;
-    // //unsigned_to_buffer(average_value,INDEX_AVERAGE_SALINITY_1);
-    // uint16_t postcapture_value = TIM17->CNT;
-    // printf("%i,%i\r\n",current_value,postcapture_value);
-    // HAL_Delay(100);
-    /////////////////////////////I2C STUFF///////////////////////////
+    for(int channel_number = 0; channel_number < CHANNELS; channel_number++){
+      select_mux_channel(channel_number);
+      // //this section must not take more than ~15 clock cycles.
+      // while(HAL_ADC_PollForConversion(&hadc, 100000) != HAL_OK);
+      // uint16_t current_value = (&hadc)->Instance->DR;
+    }
+    // tx_buffer[INDEX_CHECKSUM] = chksum8(tx_buffer,NUMBER_OF_VALUES);
+    // //while(HAL_UART_Transmit_IT(&huart1, (uint8_t *)&tx_buffer, PACKET_BYTE_COUNT) == HAL_BUSY);
+    // printf(TIM17->CNT);
 
-    //tx_buffer[INDEX_CHECKSUM] = chksum8(i2c_tx_buffer,NUMBER_OF_VALUES);
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
@@ -419,7 +380,7 @@ static void MX_USART1_UART_Init(void)
 {
 
   huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
+  huart1.Init.BaudRate = 2000000;
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;

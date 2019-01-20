@@ -235,26 +235,29 @@ int main(void)
   while (1){
 
     // //HAL_IWDG_Refresh(&hiwdg);
-    TIM17->CNT = 0;
-    //collect one buffer's worth of data
+    //collect one buffer's worth of dat
 
-    select_mux_channel(0);
-    printf("%i\r\n",TIM17->CNT);
-    //
-    // select_mux_channel(0);
-    // HAL_ADC_Start(&hadc);
-    // for(int channel_number = 0; channel_number < CHANNELS; channel_number++){
-    //   select_mux_channel(channel_number);
-    //   channel_values[current_input_channel][current_ADC_channel] = (&hadc)->Instance->DR;
-    //   if(current_ADC_channel == 1){
-    //     current_input_channel++;
-    //   }
-    //   current_ADC_channel = !current_input_channel;
-    //   //this section must not take more than ~15 clock cycles.
-    //   while(HAL_ADC_PollForConversion(&hadc, 100000) != HAL_OK);
-    //   uint16_t current_value = (&hadc)->Instance->DR;
-    // }
-    // HAL_ADC_Stop(&hadc);
+
+    HAL_ADC_Start(&hadc);
+    for(int channel_number = 0; channel_number < CHANNELS; channel_number++){
+      select_mux_channel(channel_number);
+
+      //x1
+      TIM17->CNT = 0;
+
+      while(HAL_IS_BIT_CLR(((&hadc)->Instance->ISR), (ADC_FLAG_EOC | ADC_FLAG_EOS)));
+      channel_values[channel_number][0] = (&hadc)->Instance->DR;
+
+      //x10
+      while(HAL_IS_BIT_CLR(((&hadc)->Instance->ISR), (ADC_FLAG_EOC | ADC_FLAG_EOS)));
+      channel_values[channel_number][1] = (&hadc)->Instance->DR;
+      printf("%i\r\n",TIM17->CNT);
+
+      //this section must not take more than ~15 clock cycles.
+    }
+    HAL_ADC_Stop(&hadc);
+
+
 
     // tx_buffer[INDEX_CHECKSUM] = chksum8(tx_buffer,NUMBER_OF_VALUES);
     // //while(HAL_UART_Transmit_IT(&huart1, (uint8_t *)&tx_buffer, PACKET_BYTE_COUNT) == HAL_BUSY);

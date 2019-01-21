@@ -269,13 +269,13 @@ int main(void)
       // //HAL_ADC_Stop(&hadc);
       for(int channel_number = 0; channel_number < CHANNELS; channel_number++){
         //threshold x1 to check if we need to switch to x10
-        if(channel_values[channel_number][0] > SCALE_THRESHOLD || channel_values[channel_number][0] < (4096-SCALE_THRESHOLD)){
-          unsigned_to_buffer(channel_values[channel_number][0],channel_number*2);
+        if(channel_values[channel_number][1] > SCALE_THRESHOLD || channel_values[channel_number][1] < (4096-SCALE_THRESHOLD)){
+          unsigned_to_buffer(channel_values[channel_number][1],channel_number*2);
+          tx_buffer[(channel_number*2)+1] |= 1UL << 6;
         }
         else{
-          unsigned_to_buffer(channel_values[channel_number][1],channel_number*2);
+          unsigned_to_buffer(channel_values[channel_number][0],channel_number*2);
           //set the 7th bit of the high byte to 1.
-          tx_buffer[(channel_number*2)+1] |= 1UL << 6;
         }
       }
 

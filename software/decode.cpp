@@ -157,7 +157,7 @@ int main(){
             float input_voltage = compute_voltage(current_value);
 
             if(bit_six){ //x10
-              input_voltage *= 10.0;
+              input_voltage /= 10.0;
             }
 
             // input_voltage -= channel_zero_trim[bit_six][i];
@@ -166,7 +166,7 @@ int main(){
             // if(input_voltage > 50.0){
             //   printf("%f,%i,%i\r\n",input_voltage,current_value,bit_six);
             // }
-            // printf("%i,%f\r\n",bit_six,input_voltage);
+            printf("%i,%f\r\n",bit_six,input_voltage);
           }
 
           clock_gettime(CLOCK_REALTIME, &timestamp);

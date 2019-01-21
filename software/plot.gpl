@@ -1,2 +1,3 @@
 set datafile separator ","
-plot 'data.csv' using 0:1
+plot for [i=2:20] "data.csv" u 1:i w l title "Channel ".(i-1) 
+pause -1

@@ -10,7 +10,7 @@
 /////////////////////////////////////////////////
 //Settings
 
-#define CHANNELS 16
+#define CHANNELS 1
 #define ID 1 //must be < 256 and > 0 or else line termination will break
             // A maximum of 4080 channels!
 
@@ -29,9 +29,10 @@
 #define R2 10000
 
 #define CHANNEL_ZERO 2048
-
-float channel_zero_trim[2][CHANNELS] = {{-1.701416,-1.874023,-1.775391,-1.726074,-1.676758,-1.726074,-1.627441,-1.701416,-1.701416,-1.800049,-1.726074,-1.800049,-1.824707,-1.849365,-1.800049,-1.726074},
-                      {-1.701416,-1.874023,-1.775391,-1.726074,-1.676758,-1.726074,-1.627441,-1.701416,-1.701416,-1.800049,-1.726074,-1.800049,-1.824707,-1.849365,-1.800049,-1.726074}};
+//
+// float channel_zero_trim[2][CHANNELS] = {{-1.701416,-1.874023,-1.775391,-1.726074,-1.676758,-1.726074,-1.627441,-1.701416,-1.701416,-1.800049,-1.726074,-1.800049,-1.824707,-1.849365,-1.800049,-1.726074},
+//                       {-1.701416,-1.874023,-1.775391,-1.726074,-1.676758,-1.726074,-1.627441,-1.701416,-1.701416,-1.800049,-1.726074,-1.800049,-1.824707,-1.849365,-1.800049,-1.726074}};
+//
 
 
 //thanks, wallyk!
@@ -109,14 +110,14 @@ int main(){
   struct timespec start,timestamp;
   clock_gettime(CLOCK_REALTIME, &start);
   uint64_t start_time = (start.tv_sec * 1e6) + (start.tv_nsec/1000);
-
+  uint64_t new_timestamp = 0;
 
   printf("t,");
   for(int i = 0; i < CHANNELS; i++){
     printf("CHANNEL%i,",i);
   }
   printf("\n");
-
+  int cycle_count = 0;
   while(1){
     uint8_t current_byte[1];
     current_byte[0] = 0;
@@ -133,6 +134,7 @@ int main(){
     // }
     //
     // printf("\r\n");
+    //15037613,1112.676758,1087.796631,1131.885498,1138.148682,1138.099365,1138.148682,1138.050049,1106.561523,1119.186523,1081.410156,1093.961182,1094.035156,1112.997314,1113.021973,1138.222656,7704.702148,
 
     float scaled_channel_values[CHANNELS];
 
@@ -150,7 +152,7 @@ int main(){
             //save the value of the scale bit for later use
             uint8_t bit_six = ((current_value >> 14) & 1U);
             //clear bit six in either case
-            current_value &= ~(1UL << 6);
+            current_value &= ~(1UL << 14);
 
             float input_voltage = compute_voltage(current_value);
 
@@ -158,21 +160,24 @@ int main(){
               input_voltage *= 10.0;
             }
 
-            input_voltage -= channel_zero_trim[bit_six][i];
+            // input_voltage -= channel_zero_trim[bit_six][i];
 
             scaled_channel_values[i] = input_voltage;
-
+            // if(input_voltage > 50.0){
+            //   printf("%f,%i,%i\r\n",input_voltage,current_value,bit_six);
+            // }
             // printf("%i,%f\r\n",bit_six,input_voltage);
           }
+
           clock_gettime(CLOCK_REALTIME, &timestamp);
-          uint64_t new_timestamp = (timestamp.tv_sec * 1e6) + (timestamp.tv_nsec/1000);
-
-
+          new_timestamp = (timestamp.tv_sec * 1e6) + (timestamp.tv_nsec/1000);
           printf("%i,",new_timestamp-start_time);
           for(int i = 0; i < CHANNELS; i++){
             printf("%f,",scaled_channel_values[i]);
           }
           printf("\n");
+          cycle_count ++;
+          // printf("\r\nus per sample: %f\r\n", (new_timestamp-start_time)/(float)cycle_count);
 
     }
   }

@@ -71,7 +71,7 @@ return ch;
 //Settings
 
 
-#define CHANNELS 16
+#define CHANNELS 1
 #define ID 1 //must be < 256 and > 0 or else line termination will break
             // A maximum of 4080 channels!
 
@@ -95,6 +95,8 @@ uint8_t current_input_buffer = 0;
 uint8_t current_input_channel = 0;
 uint8_t print_complete = 0;
 uint8_t adc_complete = 0;
+
+uint8_t channel_lookup_table[16] = {8,10,12,14,0,2,4,6,7,5,3,1,15,13,11,9};
 
 /////////////////////////////////////////////////
 
@@ -161,11 +163,11 @@ void select_mux_channel(uint8_t address){
     //ah darn! Why didn't I make the channels zero-indexed on the silkscreen?
     //That was tremendously stupid!
     //Let's let the convention be that all channel numbers are zero-indexed until they're graphed.
-
-    faster_pin_write(S0_GPIO_Port, S0_Pin,(address >> 0) & 1U);
-    faster_pin_write(S1_GPIO_Port, S1_Pin,(address >> 1) & 1U);
-    faster_pin_write(S2_GPIO_Port, S2_Pin,(address >> 2) & 1U);
-    faster_pin_write(S3_GPIO_Port, S3_Pin,(address >> 3) & 1U);
+    uint8_t mux_channel = channel_lookup_table[address];
+    faster_pin_write(S0_GPIO_Port, S0_Pin,(mux_channel >> 0) & 1U);
+    faster_pin_write(S1_GPIO_Port, S1_Pin,(mux_channel >> 1) & 1U);
+    faster_pin_write(S2_GPIO_Port, S2_Pin,(mux_channel >> 3) & 1U);
+    faster_pin_write(S3_GPIO_Port, S3_Pin,(mux_channel >> 2) & 1U);
 }
 
 /* USER CODE END PFP */

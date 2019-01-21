@@ -431,11 +431,11 @@ F 3 "" H 9300 2700 50  0001 C CNN
 	1    9300 2700
 	1    0    0    -1  
 $EndComp
-Text Label 3150 2000 0    50   ~ 0
-S0
 Text Label 2750 1650 0    50   ~ 0
-S1
+S0
 Text Label 2750 1750 0    50   ~ 0
+S1
+Text Label 2750 1850 0    50   ~ 0
 S2
 Text Label 1750 2250 2    50   ~ 0
 S3

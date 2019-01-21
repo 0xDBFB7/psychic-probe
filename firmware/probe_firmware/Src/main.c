@@ -71,7 +71,7 @@ return ch;
 //Settings
 
 
-#define CHANNELS 1
+#define CHANNELS 16
 #define ID 1 //must be < 256 and > 0 or else line termination will break
             // A maximum of 4080 channels!
 
@@ -97,7 +97,7 @@ uint8_t print_complete = 0;
 uint8_t adc_complete = 0;
 
 uint8_t channel_lookup_table[16] = {8,10,12,14,0,2,4,6,7,5,3,1,15,13,11,9};
-
+uint8_t chan = 0;
 /////////////////////////////////////////////////
 
 /* Private variables ---------------------------------------------------------*/
@@ -176,15 +176,11 @@ void select_mux_channel(uint8_t address){
 /**
 * @brief This function handles ADC interrupt.
 */
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
-{
-    // channel_values[current_input_channel][current_ADC_channel] = (&hadc)->Instance->DR;
-    // if(current_ADC_channel == 1 && current_input_channel < CHANNELS){
-    //   current_input_channel++;
-    // }
-    // current_ADC_channel = !current_input_channel;
-    //select_mux_channel(current_input_channel);
-}
+// void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
+// {
+//   //chan=!chan;
+//   AdcHandle->Instance->DR;
+// }
 //
 
 /* USER CODE END 0 */
@@ -250,6 +246,8 @@ int main(void)
         tx_buffer[t] = 0;
       }
 
+      switch_adc_channel(ADC_CHANNEL_0);
+      HAL_ADC_Start(&hadc);
       for(int channel_number = 0; channel_number < CHANNELS; channel_number++){
         //this section must not take more than ~30 clock cycles.
         select_mux_channel(channel_number);
@@ -258,24 +256,32 @@ int main(void)
         while(HAL_IS_BIT_CLR(((&hadc)->Instance->ISR), ADC_FLAG_EOS));
         //EOS = End of sample
         channel_values[channel_number][0] = (&hadc)->Instance->DR;
+      }
+
+      switch_adc_channel(ADC_CHANNEL_1);
+      HAL_ADC_Start(&hadc);
+      for(int channel_number = 0; channel_number < CHANNELS; channel_number++){
+        //this section must not take more than ~30 clock cycles.
+        select_mux_channel(channel_number);
 
         //x10
-        while(HAL_IS_BIT_CLR(((&hadc)->Instance->ISR), ADC_FLAG_EOC));
-        //EOC = End of conversion sequence
+        while(HAL_IS_BIT_CLR(((&hadc)->Instance->ISR), ADC_FLAG_EOS));
+        //EOS = End of sample
         channel_values[channel_number][1] = (&hadc)->Instance->DR;
       }
 
       //
       // //HAL_ADC_Stop(&hadc);
+      //printf("\r\n%i,%i\r\n",channel_values[0][0],channel_values[0][1] );
       for(int channel_number = 0; channel_number < CHANNELS; channel_number++){
         //threshold x1 to check if we need to switch to x10
-        if(channel_values[channel_number][1] > SCALE_THRESHOLD || channel_values[channel_number][1] < (4096-SCALE_THRESHOLD)){
+        if(channel_values[channel_number][1] > SCALE_THRESHOLD && channel_values[channel_number][1] < (4096-SCALE_THRESHOLD)){
           unsigned_to_buffer(channel_values[channel_number][1],channel_number*2);
+          //set the 7th bit of the high byte to 1.
           tx_buffer[(channel_number*2)+1] |= 1UL << 6;
         }
         else{
           unsigned_to_buffer(channel_values[channel_number][0],channel_number*2);
-          //set the 7th bit of the high byte to 1.
         }
       }
 
@@ -400,21 +406,21 @@ static void MX_ADC_Init(void)
 
     /**Configure for the selected ADC regular channel to be converted.
     */
-  sConfig.Channel = ADC_CHANNEL_0;
-  sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
-  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
-  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
-
-    /**Configure for the selected ADC regular channel to be converted.
-    */
-  sConfig.Channel = ADC_CHANNEL_1;
-  if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+  // sConfig.Channel = ADC_CHANNEL_0;
+  // sConfig.Rank = ADC_RANK_CHANNEL_NUMBER;
+  // sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  // if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  // {
+  //   _Error_Handler(__FILE__, __LINE__);
+  // }
+  //
+  //   /**Configure for the selected ADC regular channel to be converted.
+  //   */
+  // sConfig.Channel = ADC_CHANNEL_1;
+  // if (HAL_ADC_ConfigChannel(&hadc, &sConfig) != HAL_OK)
+  // {
+  //   _Error_Handler(__FILE__, __LINE__);
+  // }
 
 }
 

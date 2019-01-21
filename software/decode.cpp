@@ -10,7 +10,7 @@
 /////////////////////////////////////////////////
 //Settings
 
-#define CHANNELS 1
+#define CHANNELS 16
 #define ID 1 //must be < 256 and > 0 or else line termination will break
             // A maximum of 4080 channels!
 
@@ -28,7 +28,9 @@
 #define R1 1000000
 #define R2 10000
 
-#define CHANNEL_ZERO 2048
+
+uint16_t CHANNEL_ZERO[2] = {1973,2032};
+
 //
 // float channel_zero_trim[2][CHANNELS] = {{-1.701416,-1.874023,-1.775391,-1.726074,-1.676758,-1.726074,-1.627441,-1.701416,-1.701416,-1.800049,-1.726074,-1.800049,-1.824707,-1.849365,-1.800049,-1.726074},
 //                       {-1.701416,-1.874023,-1.775391,-1.726074,-1.676758,-1.726074,-1.627441,-1.701416,-1.701416,-1.800049,-1.726074,-1.800049,-1.824707,-1.849365,-1.800049,-1.726074}};
@@ -96,8 +98,8 @@ uint16_t buffer_to_unsigned(const uint8_t *buff, int index){
   return (((buff[index+1] & 0xff) << 8) | (buff[index] & 0xff));
 }
 
-float compute_voltage(uint16_t input){
-  return ((((((float)input)-CHANNEL_ZERO)/4096.0) * (R1 + R2))/R2);
+float compute_voltage(uint16_t input,uint16_t zero){
+  return (((((((float)input)-zero)*(3.3/4096)) * (R1 + R2))/R2));
 }
 
 int main(){
@@ -146,7 +148,6 @@ int main(){
             //printf("Bad checksum\r\n");
             continue;
           }
-
           for(int i = 0; i < CHANNELS;i++){
             uint16_t current_value = buffer_to_unsigned(packet,i*2);
             //save the value of the scale bit for later use
@@ -154,7 +155,7 @@ int main(){
             //clear bit six in either case
             current_value &= ~(1UL << 14);
 
-            float input_voltage = compute_voltage(current_value);
+            float input_voltage = compute_voltage(current_value,CHANNEL_ZERO[bit_six]);
 
             if(bit_six){ //x10
               input_voltage /= 10.0;
@@ -166,7 +167,7 @@ int main(){
             // if(input_voltage > 50.0){
             //   printf("%f,%i,%i\r\n",input_voltage,current_value,bit_six);
             // }
-            printf("%i,%f\r\n",bit_six,input_voltage);
+            //printf("%i,%f\r\n",bit_six,input_voltage);
           }
 
           clock_gettime(CLOCK_REALTIME, &timestamp);
